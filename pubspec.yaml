@@ -1,10 +1,13 @@
 name: flutter_sliding_toast
-description: "A flutter sliding toast for displaying animated messages."
-version: 0.0.1
+description: "A flutter sliding toast for displaying messages."
+version: 1.0.0
 homepage: https://github.com/gaurishankar007/flutter_sliding_toast
+repository: https://github.com/gaurishankar007/flutter_sliding_toast
+documentation: https://github.com/gaurishankar007/flutter_sliding_toast
+issue_tracker: https://github.com/gaurishankar007/flutter_sliding_toast/issues
 
 environment:
-  sdk: '>=3.3.4 <4.0.0'
+  sdk: ">=3.3.0 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:

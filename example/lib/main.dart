@@ -32,7 +32,7 @@ class MyHomePage extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.deepPurple,
         title: const Text(
-          "Animated Toast",
+          "Sliding Toast",
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
@@ -44,7 +44,7 @@ class MyHomePage extends StatelessWidget {
             const SizedBox(width: double.maxFinite),
             ElevatedButton(
               onPressed: () {
-                ToastMessage.show(
+                SlidingToast.show(
                   context,
                   title: const Text(
                     "Hi there! I'm a simple toast 😎. Dismiss me by sliding downward.",
@@ -64,7 +64,7 @@ class MyHomePage extends StatelessWidget {
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                ToastMessage.show(
+                SlidingToast.show(
                   context,
                   title: const Text(
                     "Hi there! I'm a simple toast 😎. Dismiss me by sliding upward.",
@@ -84,7 +84,7 @@ class MyHomePage extends StatelessWidget {
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                ToastMessage.showError(
+                SlidingToast.showError(
                   context,
                   title: const Text(
                     "Hi there! I'm a error toast 😈",
@@ -101,7 +101,7 @@ class MyHomePage extends StatelessWidget {
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                ToastMessage.showSuccess(
+                SlidingToast.showSuccess(
                   context,
                   title: const Text(
                     "Hi there! I'm a success toast 😎",
@@ -118,12 +118,12 @@ class MyHomePage extends StatelessWidget {
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                ToastMessage.show(
+                SlidingToast.show(
                   context,
                   title: const Text(
                     "Hi there! I'm modified toast 😎 with only title widget "
                     "and display duration of 5 seconds. "
-                    "My stl. Check out the code for more details.",
+                    "Modification is done to my styles. Check out the code for more details.",
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
