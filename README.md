@@ -1,11 +1,11 @@
 # Flutter Sliding Toast
 
-<!-- <p align="center">
+<div>
     <a href="https://pub.dev/packages/flutter_sliding_toast"><img src="https://img.shields.io/pub/v/flutter_sliding_toast.svg" alt="pub"></a>
     <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="license: MIT"></a>
-</p>
+</div>
 
---- -->
+---
 
 A flutter sliding toast for displaying message.
 
