@@ -11,11 +11,21 @@ A flutter sliding toast for displaying messages.
 
 ## 🎨 Screenshot
 
-<img src="https://res.cloudinary.com/gaurishankar/image/upload/v1714452184/Flutter%20Sliding%20Toast%20Pub%20Package/mmfuxbwdewtqonsaunn1.gif" width="300">
-<!-- <img src="https://github.com/gaurishankar007/flutter_sliding_toast/tree/master/example/assets/sliding_toast_from_bottom_Left.gif" width="300">
-<img src="https://github.com/gaurishankar007/flutter_sliding_toast/tree/master/example/assets/sliding_toast_from_top_center.gif" width="300">
-<img src="https://github.com/gaurishankar007/flutter_sliding_toast/tree/master/example/assets/sliding_toast_from_top_right.gif" width="300">
-<img src="https://github.com/gaurishankar007/flutter_sliding_toast/tree/master/example/assets/sliding_toast_from_center_left.gif" width="300"> -->
+<p align="center">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1714452184/Flutter%20Sliding%20Toast%20Pub%20Package/mmfuxbwdewtqonsaunn1.gif" width="400">
+</p>
+<p align="center">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1714452183/Flutter%20Sliding%20Toast%20Pub%20Package/ulqjlzzfg1y4bkpowy3o.gif" width="400">
+</p>
+<p align="center">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1714452183/Flutter%20Sliding%20Toast%20Pub%20Package/jpcmxgppnqcdkycpt3mj.gif" width="400">
+</p>
+<p align="center">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1714452182/Flutter%20Sliding%20Toast%20Pub%20Package/xi8o50mdm16ihgppceax.gif" width="400">
+</p>
+<p align="center">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1714452182/Flutter%20Sliding%20Toast%20Pub%20Package/xlcpmbrkuoebn7sf83am.gif" width="400">
+</p>
 
 ## 🎯 Features
 
