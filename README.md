@@ -32,12 +32,12 @@ A flutter sliding toast for displaying messages.
 - Slide the toast from all direction
 - Stick the toast at a position with alignment
 - Define sliding and display duration
-- Define max height and width.
+- Define max height and width
 - Set title and trailing widgets
 - Disable progressbar indicator
-- Customize the toast styles
+- Customize styles and animation behavior
 - Use default success and error toast
-- Dismiss toast with gesture sliding
+- Dismiss toast with gesture
 
 ## ⚙️ Getting Started
 
@@ -94,3 +94,6 @@ class MyHomePage extends StatelessWidget {
 Pull requests are welcomed!
 
 If you encounter any problems or you have any ideas, feel free to open an issue:
+
+- [Form for bugs](https://github.com/gaurishankar007/flutter_sliding_toast/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=)
+- [Form for feature requests](https://github.com/gaurishankar007/flutter_sliding_toast/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=)
