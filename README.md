@@ -7,25 +7,17 @@
 
 --- -->
 
-A flutter sliding toast for displaying messages.
+A flutter sliding toast for displaying message.
 
 ## 🎨 Screenshot
 
-<p align="center">
-  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1714452184/Flutter%20Sliding%20Toast%20Pub%20Package/mmfuxbwdewtqonsaunn1.gif" width="400">
-</p>
-<p align="center">
-  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1714452183/Flutter%20Sliding%20Toast%20Pub%20Package/ulqjlzzfg1y4bkpowy3o.gif" width="400">
-</p>
-<p align="center">
-  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1714452183/Flutter%20Sliding%20Toast%20Pub%20Package/jpcmxgppnqcdkycpt3mj.gif" width="400">
-</p>
-<p align="center">
-  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1714452182/Flutter%20Sliding%20Toast%20Pub%20Package/xi8o50mdm16ihgppceax.gif" width="400">
-</p>
-<p align="center">
-  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1714452182/Flutter%20Sliding%20Toast%20Pub%20Package/xlcpmbrkuoebn7sf83am.gif" width="400">
-</p>
+<div display="flex" flex-wrap="wrap" align="center">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1714452184/Flutter%20Sliding%20Toast%20Pub%20Package/mmfuxbwdewtqonsaunn1.gif" width="33%">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1714452182/Flutter%20Sliding%20Toast%20Pub%20Package/xi8o50mdm16ihgppceax.gif" width="33%">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1714452182/Flutter%20Sliding%20Toast%20Pub%20Package/xlcpmbrkuoebn7sf83am.gif" width="33%">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1714452183/Flutter%20Sliding%20Toast%20Pub%20Package/ulqjlzzfg1y4bkpowy3o.gif" width="33%">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1714452183/Flutter%20Sliding%20Toast%20Pub%20Package/jpcmxgppnqcdkycpt3mj.gif" width="33%">
+</div>
 
 ## 🎯 Features
 
