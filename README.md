@@ -11,7 +11,7 @@ A flutter sliding toast for displaying messages.
 
 ## 🎨 Screenshot
 
-<img src="https://github.com/gaurishankar007/flutter_sliding_toast/tree/master/example/assets/sliding_toast_from_bottom_center.gif" width="300">
+<img src="https://drive.google.com/file/d/1MfCUjdxItpDDLpomKZ59Mkzq5kP5nSag/view" width="300">
 <!-- <img src="https://github.com/gaurishankar007/flutter_sliding_toast/tree/master/example/assets/sliding_toast_from_bottom_Left.gif" width="300">
 <img src="https://github.com/gaurishankar007/flutter_sliding_toast/tree/master/example/assets/sliding_toast_from_top_center.gif" width="300">
 <img src="https://github.com/gaurishankar007/flutter_sliding_toast/tree/master/example/assets/sliding_toast_from_top_right.gif" width="300">
