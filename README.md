@@ -11,21 +11,11 @@ A flutter sliding toast for displaying messages.
 
 ## Sliding Toast
 
-<p align="center">
-    <img src="https://github.com/gaurishankar007/flutter_sliding_toast/tree/master/example/assets/sliding_toast_from_bottom_center.gif" width="300">
-</p>
-<p align="center">
-    <img src="https://github.com/gaurishankar007/flutter_sliding_toast/tree/master/example/assets/sliding_toast_from_bottom_Left.gif" width="300">
-</p>
-<p align="center">
-    <img src="https://github.com/gaurishankar007/flutter_sliding_toast/tree/master/example/assets/sliding_toast_from_top_center.gif" width="300">
-</p>
-<p align="center">
-    <img src="https://github.com/gaurishankar007/flutter_sliding_toast/tree/master/example/assets/sliding_toast_from_top_right.gif" width="300">
-</p>
-<p align="center">
-    <img src="https://github.com/gaurishankar007/flutter_sliding_toast/tree/master/example/assets/sliding_toast_from_center_left.gif" width="300">
-</p>
+  <img src="https://github.com/gaurishankar007/flutter_sliding_toast/tree/master/example/assets/sliding_toast_from_bottom_center.gif" width="300">
+  <img src="https://github.com/gaurishankar007/flutter_sliding_toast/tree/master/example/assets/sliding_toast_from_bottom_Left.gif" width="300">
+  <img src="https://github.com/gaurishankar007/flutter_sliding_toast/tree/master/example/assets/sliding_toast_from_top_center.gif" width="300">
+  <img src="https://github.com/gaurishankar007/flutter_sliding_toast/tree/master/example/assets/sliding_toast_from_top_right.gif" width="300">
+  <img src="https://github.com/gaurishankar007/flutter_sliding_toast/tree/master/example/assets/sliding_toast_from_center_left.gif" width="300">
 
 ## 🎯 Features
 
