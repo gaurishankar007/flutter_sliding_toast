@@ -5,7 +5,7 @@ import 'toast_style.dart';
 import 'widgets/toast_slider.dart';
 
 /// A class to show toast messages.
-class ToastMessage {
+class SlidingToast {
   static show(
     BuildContext context, {
     required Widget title,
