@@ -41,12 +41,12 @@ class ToastContainerWidget extends StatelessWidget {
 
     return Container(
       width: double.maxFinite,
-      padding: const EdgeInsets.all(15),
+      padding: toastStyle.padding ?? const EdgeInsets.all(15),
       decoration: BoxDecoration(
         color: toastStyle.backgroundColor,
         borderRadius: toastStyle.borderRadius,
         border: toastStyle.border,
-        boxShadow: [toastStyle.boxShadow],
+        boxShadow: toastStyle.boxShadow,
       ),
       child: child,
     );

@@ -4,8 +4,9 @@ import 'toast_setting.dart';
 import 'toast_style.dart';
 import 'widgets/toast_slider.dart';
 
-/// A class to show toast messages.
 class SlidingToast {
+  /// * The title is a widget displayed at the left side of the toast
+  /// * The trailing is a widget displayed at the right side of the toast
   static show(
     BuildContext context, {
     required Widget title,
@@ -34,6 +35,8 @@ class SlidingToast {
     overlay.insert(overlayEntry);
   }
 
+  /// Default toast for showing success message
+  /// The box shadow for this toast is fixed
   static showSuccess(
     BuildContext context, {
     required Widget title,
@@ -54,17 +57,21 @@ class SlidingToast {
       ),
       toastSetting: toastSetting,
       toastStyle: toastStyle.copyWith(
-        boxShadow: BoxShadow(
-          color: Colors.green.withOpacity(.2),
-          blurRadius: 5,
-          spreadRadius: 3,
-          offset: const Offset(2, 2),
-        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.green.withOpacity(.15),
+            blurRadius: 5,
+            spreadRadius: 3,
+            offset: const Offset(2, 2),
+          )
+        ],
         progressBarColor: Colors.green,
       ),
     );
   }
 
+  /// Default toast for showing error message
+  /// The box shadow for this toast is fixed
   static showError(
     BuildContext context, {
     required Widget title,
@@ -85,12 +92,14 @@ class SlidingToast {
       ),
       toastSetting: toastSetting,
       toastStyle: toastStyle.copyWith(
-        boxShadow: BoxShadow(
-          color: Colors.red.withOpacity(.1),
-          blurRadius: 5,
-          spreadRadius: 3,
-          offset: const Offset(2, 2),
-        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.red.withOpacity(.1),
+            blurRadius: 5,
+            spreadRadius: 3,
+            offset: const Offset(2, 2),
+          )
+        ],
         progressBarColor: Colors.red,
       ),
     );

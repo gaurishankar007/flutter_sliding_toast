@@ -138,11 +138,13 @@ class MyHomePage extends StatelessWidget {
                   ),
                   toastStyle: ToastStyle(
                     backgroundColor: Colors.blueAccent,
-                    boxShadow: BoxShadow(
-                      color: Colors.blue.withOpacity(.2),
-                      blurRadius: 5,
-                      spreadRadius: 2,
-                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.blue.withOpacity(.2),
+                        blurRadius: 5,
+                        spreadRadius: 2,
+                      )
+                    ],
                   ),
                 );
               },

@@ -8,7 +8,7 @@ class ToastSetting {
   final double? maxWidth;
 
   /// The maximum height of the toast
-  /// Default is [80]
+  /// Default is [40% of the screen height]
   final double? maxHeight;
 
   /// The sliding behavior of the animation.

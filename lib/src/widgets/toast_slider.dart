@@ -10,10 +10,10 @@ class ToastSlider extends StatefulWidget {
   /// The overlay entry to show the toast
   final OverlayEntry overlayEntry;
 
-  /// The title to display in the toast
+  /// The title is a widget displayed at the left side of the toast
   final Widget title;
 
-  /// The icon to display at the right side of the toast
+  /// The trailing is a widget displayed at the right side of the toast
   final Widget? trailing;
 
   /// The setting for the sliding animation
@@ -36,7 +36,8 @@ class ToastSlider extends StatefulWidget {
   State<ToastSlider> createState() => _ToastSliderState();
 }
 
-class _ToastSliderState extends State<ToastSlider> with TickerProviderStateMixin {
+class _ToastSliderState extends State<ToastSlider>
+    with TickerProviderStateMixin {
   late final ToastSetting toastSetting;
   late final ToastStyle toastStyle;
   late final AnimationController slideController;

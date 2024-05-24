@@ -21,12 +21,12 @@ class ToastPositionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Defining the constraints for the toast
-    final screenWidth = MediaQuery.of(context).size.width;
+    final size = MediaQuery.of(context).size;
 
-    double minHeight = 50;
-    double minWidth = screenWidth * .4;
-    double newMaxHeight = 80;
-    double newMaxWidth = screenWidth * 0.8;
+    double minHeight = 20;
+    double minWidth = size.width * .2;
+    double newMaxHeight = size.height * .4;
+    double newMaxWidth = size.width * 0.8;
 
     if ((maxHeight ?? 0) > newMaxHeight) newMaxHeight = maxHeight!;
     if ((maxWidth ?? 0) > newMaxWidth) newMaxWidth = maxWidth!;

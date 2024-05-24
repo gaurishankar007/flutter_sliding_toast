@@ -18,7 +18,8 @@ class ToastProgressBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color color = toastStyle.progressBarColor ?? Theme.of(context).primaryColor;
+    Color primaryColor = Theme.of(context).primaryColor;
+    Color color = toastStyle.progressBarColor ?? primaryColor;
     double height = toastSetting.progressBarHeight;
     height = height.clamp(2, 8);
 

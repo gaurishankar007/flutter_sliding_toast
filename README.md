@@ -25,6 +25,7 @@ A flutter sliding toast for displaying message.
 - Stick the toast at a position with alignment
 - Define sliding and display duration
 - Define max height and width
+- Set padding inside the toast
 - Set title and trailing widgets
 - Disable progressbar indicator
 - Customize styles and animation behavior
