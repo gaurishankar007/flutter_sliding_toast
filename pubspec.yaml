@@ -1,6 +1,6 @@
 name: flutter_sliding_toast
-description: "A flutter package for displaying sliding messages. This message can be popped from all direction. Providing custom styling and animation behavior can make the message look attractive."
-version: 1.0.1
+description: "A flutter package for displaying sliding messages from all direction with custom styling and animation."
+version: 1.1.0
 homepage: https://github.com/gaurishankar007/flutter_sliding_toast
 repository: https://github.com/gaurishankar007/flutter_sliding_toast
 documentation: https://github.com/gaurishankar007/flutter_sliding_toast

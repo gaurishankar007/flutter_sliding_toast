@@ -27,10 +27,13 @@ A flutter sliding toast for displaying message.
 - Define max height and width
 - Set padding inside the toast
 - Set title and trailing widgets
-- Disable progressbar indicator
+- Disable the progressbar indicator
+- Glassmorphism design
 - Customize styles and animation behavior
 - Use default success and error toast
-- Dismiss toast with gesture
+- Dismiss the toast by sliding it horizontally or vertically
+- Pause the animation by long pressing on the toast message
+- Continue the animation by releasing the long press
 
 ## ⚙️ Getting Started
 
@@ -38,7 +41,7 @@ Add the following line to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_sliding_toast: ^1.0.0
+  flutter_sliding_toast: ^1.1.0
 ```
 
 ## 🚀 Usage

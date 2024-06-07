@@ -1,3 +1,10 @@
+## 1.1.0
+
+- Glassmorphism design
+- Pause the animation by long pressing on the toast message
+- Continue the animation by releasing the long press
+- Clipping the progressbar with border radius
+
 ## 1.0.2
 
 - padding inside toast message

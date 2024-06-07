@@ -10,8 +10,18 @@ class ToastStyle {
   /// Default is [Colors.white]
   final Color backgroundColor;
 
+  /// The amount of blur for glassier effect.
+  /// A [backgroundColorOpacity] of 80% is given
+  /// only if not given explicitly.
+  final double? glassBlur;
+
+  /// The opacity used for background color.
+  /// Default [backgroundColorOpacity] is 80%.
+  final double? backgroundColorOpacity;
+
   /// The shadow of the toast.
-  /// Default is a shadow with 5 blur radius, 3 spread radius, and 2 offset.
+  /// Default is a shadow with 5 blur radius,
+  /// 3 spread radius, and 2 offset.
   final List<BoxShadow>? boxShadow;
 
   /// The border radius of the toast.
@@ -28,6 +38,8 @@ class ToastStyle {
 
   const ToastStyle({
     this.padding,
+    this.glassBlur,
+    this.backgroundColorOpacity,
     this.backgroundColor = Colors.white,
     this.boxShadow = const [
       BoxShadow(

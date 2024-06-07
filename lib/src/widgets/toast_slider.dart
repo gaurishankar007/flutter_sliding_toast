@@ -45,9 +45,6 @@ class _ToastSliderState extends State<ToastSlider>
   late final Animation<Offset> slideAnimation;
   late final Animation<double> sizeAnimation;
 
-  /// Whether the toast is dismissed or not by the user
-  bool isDismissed = false;
-
   @override
   void initState() {
     super.initState();
@@ -88,20 +85,14 @@ class _ToastSliderState extends State<ToastSlider>
     sizeController.forward();
 
     // listen animation is completed or not to remove the overlay
-    slideController.addStatusListener(removeOverlay);
+    sizeController.addStatusListener(removeOverlay);
   }
 
   removeOverlay(AnimationStatus status) async {
     if (status == AnimationStatus.completed) {
-      // Wait for the display duration
-      await Future.delayed(toastSetting.displayDuration);
-      // Check if the toast is already dismissed and return if it is
-      if (isDismissed) return;
-
       // Wait for the reverse animation to complete
       if (toastSetting.showReverseAnimation) await slideController.reverse();
-      if (isDismissed) return;
-
+      // Remove the overlay entry
       widget.overlayEntry.remove();
     }
   }
@@ -109,6 +100,7 @@ class _ToastSliderState extends State<ToastSlider>
   @override
   void dispose() {
     slideController.dispose();
+    sizeController.dispose();
     super.dispose();
   }
 
@@ -121,7 +113,7 @@ class _ToastSliderState extends State<ToastSlider>
       toastStyle: toastStyle,
     );
 
-    // Add progress bar if required
+    // Show progress bar if available
     if (toastSetting.showProgressBar) {
       child = Stack(
         alignment: Alignment.bottomLeft,
@@ -136,6 +128,22 @@ class _ToastSliderState extends State<ToastSlider>
       );
     }
 
+    // Show clipping with border radius
+    child = ClipRRect(
+      borderRadius: toastStyle.borderRadius,
+      child: child,
+    );
+
+    // Show box shadow if available
+    if (toastStyle.boxShadow != null) {
+      child = Container(
+        decoration: BoxDecoration(
+          boxShadow: toastStyle.boxShadow,
+        ),
+        child: child,
+      );
+    }
+
     return ToastPositionWidget(
       alignment: toastSetting.toastAlignment,
       padding: toastSetting.padding,
@@ -144,16 +152,20 @@ class _ToastSliderState extends State<ToastSlider>
       child: Dismissible(
         key: UniqueKey(),
         direction: toastSetting.toastStartPosition.dismissDirection(),
+        // Stop animations and remove the overlay on dismissed
         onDismissed: (_) {
-          // Stop animations and remove the overlay after
-          isDismissed = true;
-          slideController.stop();
           sizeController.stop();
           widget.overlayEntry.remove();
         },
-        child: SlideTransition(
-          position: slideAnimation,
-          child: child,
+        child: GestureDetector(
+          // Pause the animation on long press
+          onLongPress: () => sizeController.stop(),
+          // Forward the animation when long press ends
+          onLongPressEnd: (details) => sizeController.forward(),
+          child: SlideTransition(
+            position: slideAnimation,
+            child: child,
+          ),
         ),
       ),
     );

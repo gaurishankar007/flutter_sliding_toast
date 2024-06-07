@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import '../toast_style.dart';
@@ -22,7 +24,14 @@ class ToastContainerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color backgroundColor = toastStyle.backgroundColor;
     Widget child = title;
+
+    if (toastStyle.glassBlur != null) {
+      backgroundColor = backgroundColor.withOpacity(
+        toastStyle.backgroundColorOpacity ?? .8,
+      );
+    }
 
     if (trailing != null) {
       child = Row(
@@ -39,16 +48,27 @@ class ToastContainerWidget extends StatelessWidget {
       );
     }
 
-    return Container(
+    child = Container(
       width: double.maxFinite,
       padding: toastStyle.padding ?? const EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: toastStyle.backgroundColor,
+        color: backgroundColor,
         borderRadius: toastStyle.borderRadius,
         border: toastStyle.border,
-        boxShadow: toastStyle.boxShadow,
       ),
       child: child,
     );
+
+    if (toastStyle.glassBlur != null) {
+      child = BackdropFilter(
+        filter: ImageFilter.blur(
+          sigmaX: toastStyle.glassBlur!,
+          sigmaY: toastStyle.glassBlur!,
+        ),
+        child: child,
+      );
+    }
+
+    return child;
   }
 }

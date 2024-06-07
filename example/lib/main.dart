@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Sliding Toast Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurpleAccent),
         useMaterial3: true,
       ),
       home: const MyHomePage(),
@@ -30,7 +30,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.deepPurpleAccent,
         title: const Text(
           "Sliding Toast",
           style: TextStyle(color: Colors.white),
@@ -50,7 +50,8 @@ class MyHomePage extends StatelessWidget {
                     "Hi there! I'm a simple toast 😎. Dismiss me by sliding downward.",
                     style: TextStyle(),
                   ),
-                  trailing: const Icon(Icons.person, color: Colors.deepPurple),
+                  trailing:
+                      const Icon(Icons.person, color: Colors.deepPurpleAccent),
                   toastSetting: const ToastSetting(
                     animationDuration: Duration(seconds: 1),
                     displayDuration: Duration(seconds: 2),
@@ -59,7 +60,7 @@ class MyHomePage extends StatelessWidget {
                   ),
                 );
               },
-              child: const Text("Show Toast From Bottom"),
+              child: const Text("Toast from bottom center"),
             ),
             const SizedBox(height: 30),
             ElevatedButton(
@@ -67,19 +68,24 @@ class MyHomePage extends StatelessWidget {
                 SlidingToast.show(
                   context,
                   title: const Text(
-                    "Hi there! I'm a simple toast 😎. Dismiss me by sliding upward.",
+                    "Hi there! I'm a glassy toast 😎. Dismiss me by sliding upward.",
                     style: TextStyle(),
                   ),
-                  trailing: const Icon(Icons.person, color: Colors.deepPurple),
+                  trailing: const Icon(Icons.person),
                   toastSetting: const ToastSetting(
                     animationDuration: Duration(seconds: 1),
                     displayDuration: Duration(seconds: 2),
                     toastStartPosition: ToastPosition.top,
                     toastAlignment: Alignment.topCenter,
+                    progressBarHeight: 4,
+                  ),
+                  toastStyle: const ToastStyle(
+                    glassBlur: 4,
+                    backgroundColorOpacity: .3,
                   ),
                 );
               },
-              child: const Text("Show Toast From Top"),
+              child: const Text("Glassy toast from top center"),
             ),
             const SizedBox(height: 30),
             ElevatedButton(
@@ -87,16 +93,17 @@ class MyHomePage extends StatelessWidget {
                 SlidingToast.showError(
                   context,
                   title: const Text(
-                    "Hi there! I'm a error toast 😈",
+                    "Hi there! I'm a error toast 😈. Dismiss me by sliding horizontally.",
                     style: TextStyle(),
                   ),
                   toastSetting: const ToastSetting(
                     toastStartPosition: ToastPosition.left,
                     toastAlignment: Alignment.bottomLeft,
+                    displayDuration: Duration(seconds: 2),
                   ),
                 );
               },
-              child: const Text("Show Error Toast From Bottom Left"),
+              child: const Text("Error toast from bottom left"),
             ),
             const SizedBox(height: 30),
             ElevatedButton(
@@ -113,7 +120,7 @@ class MyHomePage extends StatelessWidget {
                   ),
                 );
               },
-              child: const Text("Show Success Toast From Top Right"),
+              child: const Text("Success toast from Top Right"),
             ),
             const SizedBox(height: 30),
             ElevatedButton(
@@ -122,25 +129,25 @@ class MyHomePage extends StatelessWidget {
                   context,
                   title: const Text(
                     "Hi there! I'm modified toast 😎 with only title widget "
-                    "and display duration of 5 seconds. "
-                    "Modification is done to my styles. Check out the code for more details.",
+                    "and display duration of 4 seconds. "
+                    " Check out the code for more details.",
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                   toastSetting: const ToastSetting(
                     maxHeight: 140,
-                    animationDuration: Duration(seconds: 1),
-                    displayDuration: Duration(seconds: 5),
+                    animationDuration: Duration(seconds: 3),
+                    displayDuration: Duration(seconds: 4),
                     showReverseAnimation: false,
                     showProgressBar: false,
                     toastStartPosition: ToastPosition.left,
                     toastAlignment: Alignment.center,
                   ),
                   toastStyle: ToastStyle(
-                    backgroundColor: Colors.blueAccent,
+                    backgroundColor: Colors.deepPurpleAccent,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.blue.withOpacity(.2),
+                        color: Colors.deepPurpleAccent.withOpacity(.2),
                         blurRadius: 5,
                         spreadRadius: 2,
                       )
@@ -148,7 +155,7 @@ class MyHomePage extends StatelessWidget {
                   ),
                 );
               },
-              child: const Text("Show Modified Toast From Center"),
+              child: const Text("Modified toast from center left"),
             ),
           ],
         ),

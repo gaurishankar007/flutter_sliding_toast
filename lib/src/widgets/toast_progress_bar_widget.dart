@@ -33,7 +33,6 @@ class ToastProgressBarWidget extends StatelessWidget {
         axisAlignment: -1,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
             gradient: LinearGradient(
               colors: [
                 color,
