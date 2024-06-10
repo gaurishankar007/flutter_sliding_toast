@@ -1,3 +1,7 @@
+## 1.1.1
+
+- Screenshots updated
+
 ## 1.1.0
 
 - Glassmorphism design
