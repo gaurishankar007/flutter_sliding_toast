@@ -1,3 +1,9 @@
+## 1.2.0
+
+- Execute functions when the toast is tapped or disposed
+- Disable multiple tapping to execute callback only one time
+- Screenshots updated
+
 ## 1.1.1
 
 - Screenshots updated
@@ -5,8 +11,7 @@
 ## 1.1.0
 
 - Glassmorphism design
-- Pause the animation by long pressing on the toast message
-- Continue the animation by releasing the long press
+- Pause the animation with long press and release it to continue
 - Clipping the progressbar with border radius
 
 ## 1.0.2

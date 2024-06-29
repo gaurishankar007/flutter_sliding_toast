@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../toast_setting.dart';
-import '../toast_style.dart';
+import '../../flutter_sliding_toast.dart';
 import 'toast_container_widget.dart';
 import 'toast_position_widget.dart';
 import 'toast_progress_bar_widget.dart';
@@ -22,6 +21,15 @@ class ToastSlider extends StatefulWidget {
   /// The style of the toast
   final ToastStyle toastStyle;
 
+  /// Function to be called when the toast is disposed
+  final Function()? onDisposed;
+
+  /// Function to be called when the toast is clicked
+  final Function()? onTapped;
+
+  /// Call callback only one time
+  final bool disableMultiTapping;
+
   /// A sliding message to show the toast
   const ToastSlider({
     super.key,
@@ -30,6 +38,9 @@ class ToastSlider extends StatefulWidget {
     required this.trailing,
     required this.toastSetting,
     required this.toastStyle,
+    this.onDisposed,
+    this.onTapped,
+    required this.disableMultiTapping,
   });
 
   @override
@@ -44,6 +55,9 @@ class _ToastSliderState extends State<ToastSlider>
   late final AnimationController sizeController;
   late final Animation<Offset> slideAnimation;
   late final Animation<double> sizeAnimation;
+
+  /// Is the toast clicked by the user
+  bool isToastTapped = false;
 
   @override
   void initState() {
@@ -94,6 +108,8 @@ class _ToastSliderState extends State<ToastSlider>
       if (toastSetting.showReverseAnimation) await slideController.reverse();
       // Remove the overlay entry
       widget.overlayEntry.remove();
+      // Execute the on disposed function
+      widget.onDisposed?.call();
     }
   }
 
@@ -113,7 +129,7 @@ class _ToastSliderState extends State<ToastSlider>
       toastStyle: toastStyle,
     );
 
-    // Show progress bar if available
+    // Show the progress bar if available
     if (toastSetting.showProgressBar) {
       child = Stack(
         alignment: Alignment.bottomLeft,
@@ -128,13 +144,13 @@ class _ToastSliderState extends State<ToastSlider>
       );
     }
 
-    // Show clipping with border radius
+    // Show the clipping with border radius
     child = ClipRRect(
       borderRadius: toastStyle.borderRadius,
       child: child,
     );
 
-    // Show box shadow if available
+    // Show the box shadow if available
     if (toastStyle.boxShadow != null) {
       child = Container(
         decoration: BoxDecoration(
@@ -158,6 +174,11 @@ class _ToastSliderState extends State<ToastSlider>
           widget.overlayEntry.remove();
         },
         child: GestureDetector(
+          // Execute onTapped function on tap
+          onTap: () {
+            if (!isToastTapped) widget.onTapped?.call();
+            if (widget.disableMultiTapping) isToastTapped = true;
+          },
           // Pause the animation on long press
           onLongPress: () => sizeController.stop(),
           // Forward the animation when long press ends

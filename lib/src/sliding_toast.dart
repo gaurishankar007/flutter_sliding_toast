@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'toast_setting.dart';
-import 'toast_style.dart';
+import '../flutter_sliding_toast.dart';
 import 'widgets/toast_slider.dart';
 
 class SlidingToast {
@@ -13,6 +12,9 @@ class SlidingToast {
     Widget? trailing,
     ToastSetting toastSetting = const ToastSetting(),
     ToastStyle toastStyle = const ToastStyle(),
+    Function()? onDisposed,
+    Function()? onTapped,
+    bool disableMultiTapping = false,
   }) {
     // Check if the context is still mounted.
     // If not, do not show the toast.
@@ -29,6 +31,9 @@ class SlidingToast {
         trailing: trailing,
         toastSetting: toastSetting,
         toastStyle: toastStyle,
+        onDisposed: onDisposed,
+        onTapped: onTapped,
+        disableMultiTapping: disableMultiTapping,
       ),
     );
 
@@ -44,6 +49,9 @@ class SlidingToast {
     bool showProgressBar = true,
     ToastSetting toastSetting = const ToastSetting(),
     ToastStyle toastStyle = const ToastStyle(),
+    Function()? onDisposed,
+    Function()? onTapped,
+    bool disableMultiTapping = false,
   }) {
     if (!context.mounted) return;
 
@@ -67,6 +75,9 @@ class SlidingToast {
         ],
         progressBarColor: Colors.green,
       ),
+      onDisposed: onDisposed,
+      onTapped: onTapped,
+      disableMultiTapping: disableMultiTapping,
     );
   }
 
@@ -79,6 +90,9 @@ class SlidingToast {
     bool showProgressBar = true,
     ToastSetting toastSetting = const ToastSetting(),
     ToastStyle toastStyle = const ToastStyle(),
+    Function()? onDisposed,
+    Function()? onTapped,
+    bool disableMultiTapping = false,
   }) {
     if (!context.mounted) return;
 
@@ -102,6 +116,9 @@ class SlidingToast {
         ],
         progressBarColor: Colors.red,
       ),
+      onDisposed: onDisposed,
+      onTapped: onTapped,
+      disableMultiTapping: disableMultiTapping,
     );
   }
 }
