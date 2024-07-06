@@ -39,6 +39,10 @@ class ToastSetting {
   /// Default is [true]
   final bool showProgressBar;
 
+  /// Disable Multiple tap on the toast
+  /// Default value is false
+  final bool disableMultiTapping;
+
   /// The position of the toast in the screen where it will slide from.
   /// Default is [ToastPosition.bottom]
   final ToastPosition toastStartPosition;
@@ -65,6 +69,7 @@ class ToastSetting {
     this.showReverseAnimation = true,
     this.showProgressBar = true,
     this.progressBarHeight = 3,
+    this.disableMultiTapping = false,
     this.toastStartPosition = ToastPosition.bottom,
     this.toastAlignment = Alignment.bottomCenter,
     this.padding = const EdgeInsets.all(10),

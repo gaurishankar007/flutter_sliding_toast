@@ -1,3 +1,9 @@
+## 1.3.0
+
+- Add Leading widget
+- Add spacing between leading and title or title and trailing
+- Close an individual or all displayed toasts programmatically
+
 ## 1.2.0
 
 - Execute functions when the toast is tapped or disposed

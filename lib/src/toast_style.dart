@@ -6,6 +6,14 @@ class ToastStyle {
   /// Padding inside the toast
   final EdgeInsets? padding;
 
+  /// Space between title and leading
+  /// Applicable only if both available
+  final double titleLeadingGap;
+
+  /// Space between title and trailing
+  /// Applicable only if both available
+  final double titleTrailingGap;
+
   /// The background color of the toast.
   /// Default is [Colors.white]
   final Color backgroundColor;
@@ -38,6 +46,8 @@ class ToastStyle {
 
   const ToastStyle({
     this.padding,
+    this.titleLeadingGap = 5,
+    this.titleTrailingGap = 5,
     this.glassBlur,
     this.backgroundColorOpacity,
     this.backgroundColor = Colors.white,

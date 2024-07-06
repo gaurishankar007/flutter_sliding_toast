@@ -62,6 +62,7 @@ class MyHomePage extends StatelessWidget {
               onPressed: () {
                 SlidingToast.show(
                   context,
+                  leading: leadingWidget(),
                   title: const Text(
                     "Hi there! I'm a simple toast 😎."
                     " Dismiss me by sliding downward.",
@@ -75,10 +76,7 @@ class MyHomePage extends StatelessWidget {
                   ),
                 );
               },
-              child: const Text(
-                "Toast from bottom center",
-                style: TextStyle(fontSize: 16),
-              ),
+              child: textWidget("Toast from bottom center"),
             ),
             const SizedBox(height: 30),
             ElevatedButton(
@@ -103,10 +101,7 @@ class MyHomePage extends StatelessWidget {
                   ),
                 );
               },
-              child: const Text(
-                "Glassy toast from top center",
-                style: TextStyle(fontSize: 16),
-              ),
+              child: textWidget("Glassy toast from top center"),
             ),
             const SizedBox(height: 30),
             ElevatedButton(
@@ -124,10 +119,7 @@ class MyHomePage extends StatelessWidget {
                   ),
                 );
               },
-              child: const Text(
-                "Error toast from bottom left",
-                style: TextStyle(fontSize: 16),
-              ),
+              child: textWidget("Error toast from bottom left"),
             ),
             const SizedBox(height: 30),
             ElevatedButton(
@@ -143,10 +135,7 @@ class MyHomePage extends StatelessWidget {
                   ),
                 );
               },
-              child: const Text(
-                "Success toast from Top Right",
-                style: TextStyle(fontSize: 16),
-              ),
+              child: textWidget("Success toast from Top Right"),
             ),
             const SizedBox(height: 30),
             ElevatedButton(
@@ -181,10 +170,7 @@ class MyHomePage extends StatelessWidget {
                   ),
                 );
               },
-              child: const Text(
-                "Modified toast from center left",
-                style: TextStyle(fontSize: 16),
-              ),
+              child: textWidget("Modified toast from center left"),
             ),
             const SizedBox(height: 30),
             ElevatedButton(
@@ -205,16 +191,46 @@ class MyHomePage extends StatelessWidget {
                   onTapped: changeColor,
                 );
               },
-              child: const Text(
-                "Callback toast",
-                style: TextStyle(fontSize: 16),
-              ),
+              child: textWidget("Callback toast"),
+            ),
+            const SizedBox(height: 30),
+            ElevatedButton(
+              onPressed: SlidingToast.closeAllToast,
+              child: textWidget("Close all toast"),
             ),
           ],
         ),
       ),
     );
   }
+
+  Container leadingWidget() {
+    return Container(
+      width: 40,
+      height: 40,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.purple,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(.1),
+            spreadRadius: 3,
+            blurRadius: 4,
+          ),
+        ],
+      ),
+      alignment: Alignment.center,
+      child: const Text(
+        "🦄",
+        style: TextStyle(fontSize: 20),
+      ),
+    );
+  }
+
+  Text textWidget(String text) => Text(
+        text,
+        style: const TextStyle(fontSize: 16),
+      );
 }
 
 class TrailingWidget extends StatelessWidget {

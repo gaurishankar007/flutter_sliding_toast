@@ -1,48 +1,79 @@
+import 'dart:collection' show Queue;
+
 import 'package:flutter/material.dart';
 
 import '../flutter_sliding_toast.dart';
+import 'core/unique_string_generator.dart';
 import 'widgets/toast_slider.dart';
 
 class SlidingToast {
-  /// * The title is a widget displayed at the left side of the toast
-  /// * The trailing is a widget displayed at the right side of the toast
-  static show(
+  static final _toastControllers = Queue<ToastController>();
+
+  static ToastController show(
     BuildContext context, {
+    Widget? leading,
     required Widget title,
     Widget? trailing,
     ToastSetting toastSetting = const ToastSetting(),
     ToastStyle toastStyle = const ToastStyle(),
     Function()? onDisposed,
     Function()? onTapped,
-    bool disableMultiTapping = false,
   }) {
-    // Check if the context is still mounted.
-    // If not, do not show the toast.
-    if (!context.mounted) return;
+    /// Check if the context is still mounted.
+    /// If not, do not show the toast.
+    if (!context.mounted) return ToastController.empty();
 
+    /// Toast Controller for the overlay
+    late final ToastController toastController;
+
+    /// Overlay and overlay entry and passing toast controller to dispose
+    /// the overlay whenever the animation is finished
     final overlay = Overlay.of(context);
-
-    late final OverlayEntry overlayEntry;
-
-    overlayEntry = OverlayEntry(
+    final overlayEntry = OverlayEntry(
       builder: (context) => ToastSlider(
-        overlayEntry: overlayEntry,
+        toastController: toastController,
+        leading: leading,
         title: title,
         trailing: trailing,
         toastSetting: toastSetting,
         toastStyle: toastStyle,
         onDisposed: onDisposed,
         onTapped: onTapped,
-        disableMultiTapping: disableMultiTapping,
       ),
     );
-
     overlay.insert(overlayEntry);
+
+    /// Inserting toast controller to a list
+    String toastId = getUniqueString();
+    toastController = ToastController(
+      id: toastId,
+      closeToast: () {
+        if (overlayEntry.mounted) {
+          overlayEntry.remove();
+          overlayEntry.dispose();
+        }
+
+        /// Removing toast from the list
+        _toastControllers.removeWhere((e) => e.id == toastId);
+      },
+    );
+
+    /// Adding toast to the list
+    _toastControllers.add(toastController);
+
+    return toastController;
+  }
+
+  /// Close all the toasts one by one
+  static closeAllToast() {
+    while (_toastControllers.isNotEmpty) {
+      _toastControllers.removeFirst().closeToast();
+    }
   }
 
   /// Default toast for showing success message
-  /// The box shadow for this toast is fixed
-  static showSuccess(
+  /// The icon and box shadow for this toast is fixed
+  static ToastController showSuccess(
     BuildContext context, {
     required Widget title,
     double? checkIconSize,
@@ -51,11 +82,8 @@ class SlidingToast {
     ToastStyle toastStyle = const ToastStyle(),
     Function()? onDisposed,
     Function()? onTapped,
-    bool disableMultiTapping = false,
   }) {
-    if (!context.mounted) return;
-
-    show(
+    return show(
       context,
       title: title,
       trailing: Icon(
@@ -77,13 +105,12 @@ class SlidingToast {
       ),
       onDisposed: onDisposed,
       onTapped: onTapped,
-      disableMultiTapping: disableMultiTapping,
     );
   }
 
   /// Default toast for showing error message
-  /// The box shadow for this toast is fixed
-  static showError(
+  /// The icon and box shadow for this toast is fixed
+  static ToastController showError(
     BuildContext context, {
     required Widget title,
     double? checkIconSize,
@@ -94,9 +121,7 @@ class SlidingToast {
     Function()? onTapped,
     bool disableMultiTapping = false,
   }) {
-    if (!context.mounted) return;
-
-    show(
+    return show(
       context,
       title: title,
       trailing: Icon(
@@ -118,7 +143,6 @@ class SlidingToast {
       ),
       onDisposed: onDisposed,
       onTapped: onTapped,
-      disableMultiTapping: disableMultiTapping,
     );
   }
 }

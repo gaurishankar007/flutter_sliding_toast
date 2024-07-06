@@ -1,6 +1,6 @@
 name: flutter_sliding_toast
 description: "A flutter package for displaying sliding messages from all direction with custom styling and animation."
-version: 1.2.0
+version: 1.3.0
 homepage: https://github.com/gaurishankar007/flutter_sliding_toast
 repository: https://github.com/gaurishankar007/flutter_sliding_toast
 documentation: https://github.com/gaurishankar007/flutter_sliding_toast
@@ -17,7 +17,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  flutter_lints: ^4.0.0
 
 flutter:
   # assets:

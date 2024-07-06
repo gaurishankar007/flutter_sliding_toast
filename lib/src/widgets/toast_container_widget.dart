@@ -5,10 +5,14 @@ import 'package:flutter/material.dart';
 import '../toast_style.dart';
 
 class ToastContainerWidget extends StatelessWidget {
+  /// The widget to display at the start of the message
+  final Widget? leading;
+
   /// The message to display in the toast
+  /// It's width is expanded whenever leading or trailing widget is present
   final Widget title;
 
-  /// The icon to display at the end of the message
+  /// The widget to display at the end of the message
   final Widget? trailing;
 
   /// Styling of the toast
@@ -17,6 +21,7 @@ class ToastContainerWidget extends StatelessWidget {
   /// A container to display a toast message
   const ToastContainerWidget({
     super.key,
+    required this.leading,
     required this.title,
     required this.trailing,
     this.toastStyle = const ToastStyle(),
@@ -27,23 +32,33 @@ class ToastContainerWidget extends StatelessWidget {
     Color backgroundColor = toastStyle.backgroundColor;
     Widget child = title;
 
+    /// Adding transparency in background color for glassy effect
     if (toastStyle.glassBlur != null) {
       backgroundColor = backgroundColor.withOpacity(
         toastStyle.backgroundColorOpacity ?? .8,
       );
     }
 
-    if (trailing != null) {
+    if (leading != null || trailing != null) {
       child = Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          if (leading != null)
+            Padding(
+              padding: EdgeInsets.only(
+                right: toastStyle.titleLeadingGap,
+              ),
+              child: leading,
+            ),
           Expanded(
             child: title,
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 5),
-            child: trailing,
-          ),
+          if (trailing != null)
+            Padding(
+              padding: EdgeInsets.only(
+                left: toastStyle.titleTrailingGap,
+              ),
+              child: trailing,
+            ),
         ],
       );
     }
