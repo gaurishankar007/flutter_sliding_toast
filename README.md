@@ -13,10 +13,14 @@ A flutter sliding toast for displaying beautiful messages.
 
 The 1.4.0 version brings some breaking changes.
 
+- 'SlidingToast' renamed to 'InteractiveToast' along with it's methods
+  - 'show' renamed to 'slide'
+  - 'showSuccess' renamed to 'slideSuccess'
+  - 'showError' renamed to 'slideError'
 - 'ToastSetting' renamed to 'SlidingToastSetting'
-- 'disableMultiTapping' moved from 'show' function to 'SlidingToastSetting'.
+- 'disableMultiTapping' moved from 'show' ('slide' currently) function to 'ToastSetting' ('SlidingToastSetting' currently).
 
-## 🎨 Screenshot
+## 🎨 Screenshots
 
 <div display="flex" flex-wrap="wrap" align="center">
   <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1719663894/Flutter%20Sliding%20Toast%20Pub%20Package/1_ihr98j.gif" width="30%">
@@ -29,12 +33,14 @@ The 1.4.0 version brings some breaking changes.
 
 ## 🎯 Features
 
-- Show sliding and popup toasts, modify animation behaviors
-- Change toast's alignment positions and sliding directions
+- Show sliding toasts, modify sliding behaviors
+- Show popup toasts, disable or modify fading and scaling behaviors
+- Change toast's alignment positions and sliding toast's sliding directions
 - Define animation and display duration, max height and width, padding
-- Set title, leading, trailing widgets and disable the progressbar
+- Set title, leading, trailing widgets and disable the progressbar in sliding toast
 - Use glassmorphism design or default success and error toast
-- Dismiss the toast by sliding it horizontally or vertically
+- Dismiss the sliding toast by sliding it horizontally or vertically
+- Dismiss the popup toast by sliding it horizontally
 - Dismiss an individual or all toasts programmatically
 - Pause the animation with long press and release it to continue
 - Execute a function after the toast is tapped or disposed

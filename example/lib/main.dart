@@ -41,10 +41,15 @@ class _MyAppState extends State<MyApp> {
       });
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   final VoidCallback changeColor;
   const MyHomePage({super.key, required this.changeColor});
 
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +65,7 @@ class MyHomePage extends StatelessWidget {
             const SizedBox(width: double.maxFinite),
             ElevatedButton(
               onPressed: () {
-                PoppingToast.show(
+                InteractiveToast.slide(
                   context,
                   leading: leadingWidget(),
                   title: const Text(
@@ -68,7 +73,8 @@ class MyHomePage extends StatelessWidget {
                     " Dismiss me by sliding downward.",
                   ),
                   trailing: const TrailingWidget(),
-                  toastSetting: const PoppingToastSetting(
+                  toastStyle: const ToastStyle(titleLeadingGap: 10),
+                  toastSetting: const SlidingToastSetting(
                     animationDuration: Duration(seconds: 1),
                     displayDuration: Duration(seconds: 2),
                     toastAlignment: Alignment.bottomCenter,
@@ -77,10 +83,10 @@ class MyHomePage extends StatelessWidget {
               },
               child: textWidget("Toast from bottom center"),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                SlidingToast.show(
+                InteractiveToast.slide(
                   context,
                   title: const Text(
                     "Hi there! I'm a glassy toast 🦄."
@@ -102,10 +108,10 @@ class MyHomePage extends StatelessWidget {
               },
               child: textWidget("Glassy toast from top center"),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                SlidingToast.showError(
+                InteractiveToast.slideError(
                   context,
                   title: const Text(
                     "Hi there! I'm a error toast 😈. "
@@ -120,10 +126,10 @@ class MyHomePage extends StatelessWidget {
               },
               child: textWidget("Error toast from bottom left"),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                SlidingToast.showSuccess(
+                InteractiveToast.slideSuccess(
                   context,
                   title: const Text(
                     "Hi there! I'm a success toast 🦁",
@@ -136,22 +142,21 @@ class MyHomePage extends StatelessWidget {
               },
               child: textWidget("Success toast from Top Right"),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                SlidingToast.show(
+                InteractiveToast.slide(
                   context,
                   title: const Text(
-                    "Hi there! I'm modified toast 🐷 with only title widget "
-                    "and display duration of 4 seconds. "
-                    " Check out the code for more details.",
+                    "I'm a bit more modified toast 🐷 with only title widget, "
+                    "without progressBar and reverse animation.",
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                   toastSetting: const SlidingToastSetting(
                     maxHeight: 140,
-                    animationDuration: Duration(seconds: 3),
-                    displayDuration: Duration(seconds: 4),
+                    animationDuration: Duration(seconds: 2),
+                    displayDuration: Duration(seconds: 3),
                     showReverseAnimation: false,
                     showProgressBar: false,
                     toastStartPosition: ToastPosition.left,
@@ -171,30 +176,49 @@ class MyHomePage extends StatelessWidget {
               },
               child: textWidget("Modified toast from center left"),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                SlidingToast.show(
+                InteractiveToast.pop(
                   context,
                   title: const Text(
-                    "Hi there! I'm a callback toast 🐺."
+                    "Hi! I'm a popup toast with onTap callback 🐺."
                     "Tap me to change theme color.",
                   ),
                   trailing: const TrailingWidget(),
-                  toastSetting: const SlidingToastSetting(
+                  toastSetting: const PopupToastSetting(
                     animationDuration: Duration(seconds: 1),
-                    displayDuration: Duration(seconds: 4),
-                    toastStartPosition: ToastPosition.bottom,
+                    displayDuration: Duration(seconds: 3),
                     toastAlignment: Alignment.bottomCenter,
                   ),
-                  onTapped: changeColor,
+                  onTapped: widget.changeColor,
                 );
               },
-              child: textWidget("Callback toast"),
+              child: textWidget("Callback toast at bottom"),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: SlidingToast.closeAllToast,
+              onPressed: () {
+                InteractiveToast.pop(
+                  context,
+                  title: const Text(
+                    "Hello! I'm a popup toast 🤡 with no fading and scaling.",
+                  ),
+                  trailing: const TrailingWidget(),
+                  toastSetting: const PopupToastSetting(
+                    showFading: false,
+                    showScaling: false,
+                    animationDuration: Duration(seconds: 1),
+                    displayDuration: Duration(seconds: 3),
+                    toastAlignment: Alignment.topRight,
+                  ),
+                );
+              },
+              child: textWidget("Popup toast at top right"),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: InteractiveToast.closeAllToast,
               child: textWidget("Close all toast"),
             ),
           ],

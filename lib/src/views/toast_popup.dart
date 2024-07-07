@@ -19,7 +19,7 @@ class ToastPopup extends StatefulWidget {
   final Widget? trailing;
 
   /// The setting for the sliding animation
-  final PoppingToastSetting toastSetting;
+  final PopupToastSetting toastSetting;
 
   /// The style of the toast
   final ToastStyle toastStyle;
@@ -48,7 +48,7 @@ class ToastPopup extends StatefulWidget {
 }
 
 class _ToastPopupState extends State<ToastPopup> with TickerProviderStateMixin {
-  late final PoppingToastSetting toastSetting;
+  late final PopupToastSetting toastSetting;
   late final ToastStyle toastStyle;
   late final AnimationController fadeController;
   late final AnimationController scaleController;

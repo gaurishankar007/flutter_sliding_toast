@@ -4,7 +4,7 @@ import '../enums/toast_position.dart';
 
 /// The setting for the sliding animation
 @immutable
-class PoppingToastSetting {
+class PopupToastSetting {
   /// The maximum width of the toast
   /// Default is [80% of the screen width]
   final double? maxWidth;
@@ -59,7 +59,7 @@ class PoppingToastSetting {
   /// Default is [EdgeInsets.all(10)]
   final EdgeInsets padding;
 
-  const PoppingToastSetting({
+  const PopupToastSetting({
     this.maxWidth,
     this.maxHeight,
     this.showFading = true,
@@ -74,7 +74,7 @@ class PoppingToastSetting {
     this.padding = const EdgeInsets.all(10),
   });
 
-  PoppingToastSetting copyWith({
+  PopupToastSetting copyWith({
     double? maxWidth,
     double? maxHeight,
     bool? showFading,
@@ -88,7 +88,7 @@ class PoppingToastSetting {
     Alignment? toastAlignment,
     EdgeInsets? padding,
   }) {
-    return PoppingToastSetting(
+    return PopupToastSetting(
       maxWidth: maxWidth ?? this.maxWidth,
       maxHeight: maxHeight ?? this.maxHeight,
       showFading: showFading ?? this.showFading,
