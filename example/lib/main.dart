@@ -60,7 +60,7 @@ class MyHomePage extends StatelessWidget {
             const SizedBox(width: double.maxFinite),
             ElevatedButton(
               onPressed: () {
-                SlidingToast.show(
+                PoppingToast.show(
                   context,
                   leading: leadingWidget(),
                   title: const Text(
@@ -68,10 +68,9 @@ class MyHomePage extends StatelessWidget {
                     " Dismiss me by sliding downward.",
                   ),
                   trailing: const TrailingWidget(),
-                  toastSetting: const ToastSetting(
+                  toastSetting: const PoppingToastSetting(
                     animationDuration: Duration(seconds: 1),
                     displayDuration: Duration(seconds: 2),
-                    toastStartPosition: ToastPosition.bottom,
                     toastAlignment: Alignment.bottomCenter,
                   ),
                 );
@@ -88,7 +87,7 @@ class MyHomePage extends StatelessWidget {
                     "Dismiss me by sliding upward.",
                   ),
                   trailing: const TrailingWidget(),
-                  toastSetting: const ToastSetting(
+                  toastSetting: const SlidingToastSetting(
                     animationDuration: Duration(seconds: 1),
                     displayDuration: Duration(seconds: 2),
                     toastStartPosition: ToastPosition.top,
@@ -112,7 +111,7 @@ class MyHomePage extends StatelessWidget {
                     "Hi there! I'm a error toast 😈. "
                     "Dismiss me by sliding horizontally.",
                   ),
-                  toastSetting: const ToastSetting(
+                  toastSetting: const SlidingToastSetting(
                     toastStartPosition: ToastPosition.left,
                     toastAlignment: Alignment.bottomLeft,
                     displayDuration: Duration(seconds: 2),
@@ -129,7 +128,7 @@ class MyHomePage extends StatelessWidget {
                   title: const Text(
                     "Hi there! I'm a success toast 🦁",
                   ),
-                  toastSetting: const ToastSetting(
+                  toastSetting: const SlidingToastSetting(
                     toastStartPosition: ToastPosition.right,
                     toastAlignment: Alignment.topRight,
                   ),
@@ -149,7 +148,7 @@ class MyHomePage extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
-                  toastSetting: const ToastSetting(
+                  toastSetting: const SlidingToastSetting(
                     maxHeight: 140,
                     animationDuration: Duration(seconds: 3),
                     displayDuration: Duration(seconds: 4),
@@ -182,7 +181,7 @@ class MyHomePage extends StatelessWidget {
                     "Tap me to change theme color.",
                   ),
                   trailing: const TrailingWidget(),
-                  toastSetting: const ToastSetting(
+                  toastSetting: const SlidingToastSetting(
                     animationDuration: Duration(seconds: 1),
                     displayDuration: Duration(seconds: 4),
                     toastStartPosition: ToastPosition.bottom,

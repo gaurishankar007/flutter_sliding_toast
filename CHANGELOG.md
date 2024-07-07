@@ -1,3 +1,9 @@
+## 1.4.0
+
+- Show popup toast with title, leading, and trailing widget
+- Enable or disable fading and scaling effect or modify their behavior
+- bug fixes
+
 ## 1.3.0
 
 - Add Leading widget

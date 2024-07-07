@@ -11,9 +11,10 @@ A flutter sliding toast for displaying beautiful messages.
 
 ## Breaking Changes
 
-The 1.3.0 version brings some breaking changes.
+The 1.4.0 version brings some breaking changes.
 
-- 'disableMultiTapping' moved to toast settings from the SlidingToast's 'show' function.
+- 'ToastSetting' renamed to 'SlidingToastSetting'
+- 'disableMultiTapping' moved from 'show' function to 'SlidingToastSetting'.
 
 ## 🎨 Screenshot
 
@@ -28,8 +29,9 @@ The 1.3.0 version brings some breaking changes.
 
 ## 🎯 Features
 
-- Change toast's sliding directions and alignment positions
-- Define sliding and display duration, max height and width, padding
+- Show sliding and popup toasts, modify animation behaviors
+- Change toast's alignment positions and sliding directions
+- Define animation and display duration, max height and width, padding
 - Set title, leading, trailing widgets and disable the progressbar
 - Use glassmorphism design or default success and error toast
 - Dismiss the toast by sliding it horizontally or vertically
@@ -44,7 +46,7 @@ Add the following line to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_sliding_toast: ^1.3.0
+  flutter_sliding_toast: ^1.4.0
 ```
 
 ## 🚀 Usage

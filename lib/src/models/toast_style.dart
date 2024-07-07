@@ -67,7 +67,11 @@ class ToastStyle {
 
   ToastStyle copyWith({
     EdgeInsets? padding,
+    double? titleLeadingGap,
+    double? titleTrailingGap,
     Color? backgroundColor,
+    double? glassBlur,
+    double? backgroundColorOpacity,
     List<BoxShadow>? boxShadow,
     BorderRadius? borderRadius,
     Border? border,
@@ -75,7 +79,11 @@ class ToastStyle {
   }) {
     return ToastStyle(
       padding: padding ?? this.padding,
+      titleLeadingGap: titleLeadingGap ?? this.titleLeadingGap,
+      titleTrailingGap: titleTrailingGap ?? this.titleTrailingGap,
       backgroundColor: backgroundColor ?? this.backgroundColor,
+      glassBlur: glassBlur ?? this.glassBlur,
+      backgroundColorOpacity: backgroundColorOpacity ?? this.backgroundColorOpacity,
       boxShadow: boxShadow ?? this.boxShadow,
       borderRadius: borderRadius ?? this.borderRadius,
       border: border ?? this.border,

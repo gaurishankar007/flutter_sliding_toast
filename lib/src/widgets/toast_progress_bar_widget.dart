@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../toast_setting.dart';
-import '../toast_style.dart';
+import '../models/sliding_toast_setting.dart';
+import '../models/toast_style.dart';
 
 class ToastProgressBarWidget extends StatelessWidget {
   final Animation<double> animation;
   final ToastStyle toastStyle;
-  final ToastSetting toastSetting;
+  final SlidingToastSetting toastSetting;
 
   /// A progress bar to show the remaining time left to dismiss the toast
   const ToastProgressBarWidget({

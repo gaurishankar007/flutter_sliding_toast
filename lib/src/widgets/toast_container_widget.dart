@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import '../toast_style.dart';
+import '../models/toast_style.dart';
 
 class ToastContainerWidget extends StatelessWidget {
   /// The widget to display at the start of the message

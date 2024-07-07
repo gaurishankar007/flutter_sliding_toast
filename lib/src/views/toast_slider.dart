@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../flutter_sliding_toast.dart';
-import 'toast_container_widget.dart';
-import 'toast_position_widget.dart';
-import 'toast_progress_bar_widget.dart';
+import '../widgets/toast_container_widget.dart';
+import '../widgets/toast_position_widget.dart';
+import '../widgets/toast_progress_bar_widget.dart';
 
 class ToastSlider extends StatefulWidget {
   /// The toast controller for removing the overlay
@@ -20,7 +20,7 @@ class ToastSlider extends StatefulWidget {
   final Widget? trailing;
 
   /// The setting for the sliding animation
-  final ToastSetting toastSetting;
+  final SlidingToastSetting toastSetting;
 
   /// The style of the toast
   final ToastStyle toastStyle;
@@ -50,7 +50,7 @@ class ToastSlider extends StatefulWidget {
 
 class _ToastSliderState extends State<ToastSlider>
     with TickerProviderStateMixin {
-  late final ToastSetting toastSetting;
+  late final SlidingToastSetting toastSetting;
   late final ToastStyle toastStyle;
   late final AnimationController slideController;
   late final AnimationController sizeController;
@@ -102,17 +102,16 @@ class _ToastSliderState extends State<ToastSlider>
     sizeController.forward();
 
     // listen animation is completed or not to remove the overlay
-    sizeController.addStatusListener(removeOverlay);
+    sizeController.addStatusListener(animationListener);
   }
 
-  removeOverlay(AnimationStatus status) async {
+  animationListener(AnimationStatus status) async {
     if (status == AnimationStatus.completed) {
       // Wait for the reverse animation to complete
       if (toastSetting.showReverseAnimation) await slideController.reverse();
+
       // Remove the overlay entry
       widget.toastController.closeToast();
-      // Execute the on disposed function
-      widget.onDisposed?.call();
     }
   }
 

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 
 import '../flutter_sliding_toast.dart';
 import 'core/unique_string_generator.dart';
-import 'views/toast_slider.dart';
+import 'views/toast_popup.dart';
 
-class SlidingToast {
+class PoppingToast {
   static final _toastControllers = Queue<ToastController>();
 
   static ToastController show(
@@ -14,7 +14,7 @@ class SlidingToast {
     Widget? leading,
     required Widget title,
     Widget? trailing,
-    SlidingToastSetting toastSetting = const SlidingToastSetting(),
+    PoppingToastSetting toastSetting = const PoppingToastSetting(),
     ToastStyle toastStyle = const ToastStyle(),
     Function()? onDisposed,
     Function()? onTapped,
@@ -30,7 +30,7 @@ class SlidingToast {
     /// the overlay whenever the animation is finished
     final overlay = Overlay.of(context);
     final overlayEntry = OverlayEntry(
-      builder: (context) => ToastSlider(
+      builder: (context) => ToastPopup(
         toastController: toastController,
         leading: leading,
         title: title,
@@ -79,7 +79,7 @@ class SlidingToast {
     required Widget title,
     double? checkIconSize,
     bool showProgressBar = true,
-    SlidingToastSetting toastSetting = const SlidingToastSetting(),
+    PoppingToastSetting toastSetting = const PoppingToastSetting(),
     ToastStyle toastStyle = const ToastStyle(),
     Function()? onDisposed,
     Function()? onTapped,
@@ -116,7 +116,7 @@ class SlidingToast {
     required Widget title,
     double? checkIconSize,
     bool showProgressBar = true,
-    SlidingToastSetting toastSetting = const SlidingToastSetting(),
+    PoppingToastSetting toastSetting = const PoppingToastSetting(),
     ToastStyle toastStyle = const ToastStyle(),
     Function()? onDisposed,
     Function()? onTapped,
