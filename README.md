@@ -23,12 +23,14 @@ The 1.4.0 version brings some breaking changes.
 ## 🎨 Screenshots
 
 <div display="flex" flex-wrap="wrap" align="center">
-  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1719663894/Flutter%20Sliding%20Toast%20Pub%20Package/1_ihr98j.gif" width="30%">
-  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1719663773/Flutter%20Sliding%20Toast%20Pub%20Package/2_dnl9vh.gif" width="30%">
-  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1719663772/Flutter%20Sliding%20Toast%20Pub%20Package/3_dw6mh6.gif" width="30%">
-  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1719663816/Flutter%20Sliding%20Toast%20Pub%20Package/4_wzchhp.gif" width="30%">
-  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1719663776/Flutter%20Sliding%20Toast%20Pub%20Package/5_rzepq2.gif" width="30%">
-  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1719663775/Flutter%20Sliding%20Toast%20Pub%20Package/6_ns4vcc.gif" width="30%">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1720411711/Flutter%20Sliding%20Toast%20Pub%20Package/mpajt61nkff1zzzkoynr.gif" width="30%">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1720411957/Flutter%20Sliding%20Toast%20Pub%20Package/u0rhkp2zr7xfqcuoyfdy.gif" width="30%">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1720411962/Flutter%20Sliding%20Toast%20Pub%20Package/fbqjeuu3pb4nlcuoonzj.gif" width="30%">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1720411713/Flutter%20Sliding%20Toast%20Pub%20Package/cz0ijfq7uzhtpiewopjf.gif" width="30%">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1720412052/Flutter%20Sliding%20Toast%20Pub%20Package/fuvrfgqdgou5ickj7w17.gif" width="30%">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1720411805/Flutter%20Sliding%20Toast%20Pub%20Package/iwumvethuwfldkxdlgwx.gif" width="30%">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1720411805/Flutter%20Sliding%20Toast%20Pub%20Package/i1l79zvmuyowwpxddfci.gif" width="30%">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1720412087/Flutter%20Sliding%20Toast%20Pub%20Package/hntbiuj13cwvmfcrkzvi.gif" width="30%">
 </div>
 
 ## 🎯 Features
@@ -65,31 +67,90 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Sliding Toast"),
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: const Text("Sliding & Popup Toast"),
         centerTitle: true,
       ),
       body: SafeArea(
-        child: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              SlidingToast.show(
-                context,
-                title: const Text(
-                  "Hi there! I'm a simple toast 😎."
-                  " Dismiss me by sliding downward.",
-                ),
-                trailing: const TrailingWidget(),
-                toastSetting: const ToastSetting(
-                  animationDuration: Duration(seconds: 1),
-                  displayDuration: Duration(seconds: 2),
-                  toastStartPosition: ToastPosition.bottom,
-                  toastAlignment: Alignment.bottomCenter,
-                ),
-              );
-            },
-            child: const Text("Show Toast"),
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(width: double.maxFinite),
+            ElevatedButton(
+              onPressed: () {
+                InteractiveToast.slide(
+                  context,
+                  leading: leadingWidget(),
+                  title: const Text(
+                    "Hi there! I'm a sliding toast 😎. "
+                    "Dismiss me by sliding upward.",
+                  ),
+                  trailing: trailingWidget(),
+                  toastStyle: const ToastStyle(titleLeadingGap: 10),
+                  toastSetting: const SlidingToastSetting(
+                    animationDuration: Duration(seconds: 1),
+                    displayDuration: Duration(seconds: 2),
+                    toastStartPosition: ToastPosition.top,
+                    toastAlignment: Alignment.topCenter,
+                  ),
+                );
+              },
+              child: textWidget("Sliding toast from top center"),
+            ),
+            const SizedBox(height: 30),
+            ElevatedButton(
+              onPressed: () {
+                InteractiveToast.pop(
+                  context,
+                  title: const Text(
+                    "Hi! I'm a popup toast 🐺. "
+                    "I have fading and scaling effect.",
+                  ),
+                  trailing: trailingWidget(),
+                  toastSetting: const PopupToastSetting(
+                    animationDuration: Duration(seconds: 1),
+                    displayDuration: Duration(seconds: 3),
+                    toastAlignment: Alignment.bottomCenter,
+                  ),
+                );
+              },
+              child: textWidget("Popup toast at bottom center"),
+            ),
+          ],
         ),
+      ),
+    );
+  }
+
+  Text textWidget(String text) => Text(
+        text,
+        style: const TextStyle(fontSize: 16),
+      );
+
+  Icon trailingWidget() => const Icon(
+        Icons.person,
+        color: Colors.deepPurple,
+      );
+
+  Container leadingWidget() {
+    return Container(
+      width: 40,
+      height: 40,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.purple,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(.1),
+            spreadRadius: 3,
+            blurRadius: 4,
+          ),
+        ],
+      ),
+      alignment: Alignment.center,
+      child: const Text(
+        "🦄",
+        style: TextStyle(fontSize: 20),
       ),
     );
   }

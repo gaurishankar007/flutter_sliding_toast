@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
-        title: const Text("Sliding Toast"),
+        title: const Text("Sliding & Popup Toast"),
         centerTitle: true,
       ),
       body: SafeArea(
