@@ -44,6 +44,11 @@ class ToastStyle {
   /// Default is [Theme.of(context).primaryColor]
   final Color? progressBarColor;
 
+  /// The width of the title widget expanding to the available width
+  /// Default is [true]
+  /// * If progress bar is enabled, then title will be always expanded
+  final bool expandedTitle;
+
   const ToastStyle({
     this.padding,
     this.titleLeadingGap = 5,
@@ -63,6 +68,7 @@ class ToastStyle {
     this.borderRadius = const BorderRadius.all(Radius.circular(8)),
     this.border,
     this.progressBarColor,
+    this.expandedTitle = true,
   });
 
   ToastStyle copyWith({
@@ -76,6 +82,7 @@ class ToastStyle {
     BorderRadius? borderRadius,
     Border? border,
     Color? progressBarColor,
+    bool? expandedTitle,
   }) {
     return ToastStyle(
       padding: padding ?? this.padding,
@@ -83,11 +90,13 @@ class ToastStyle {
       titleTrailingGap: titleTrailingGap ?? this.titleTrailingGap,
       backgroundColor: backgroundColor ?? this.backgroundColor,
       glassBlur: glassBlur ?? this.glassBlur,
-      backgroundColorOpacity: backgroundColorOpacity ?? this.backgroundColorOpacity,
+      backgroundColorOpacity:
+          backgroundColorOpacity ?? this.backgroundColorOpacity,
       boxShadow: boxShadow ?? this.boxShadow,
       borderRadius: borderRadius ?? this.borderRadius,
       border: border ?? this.border,
       progressBarColor: progressBarColor ?? this.progressBarColor,
+      expandedTitle: expandedTitle ?? this.expandedTitle,
     );
   }
 }

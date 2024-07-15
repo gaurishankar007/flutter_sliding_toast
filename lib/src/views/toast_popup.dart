@@ -150,6 +150,7 @@ class _ToastPopupState extends State<ToastPopup> with TickerProviderStateMixin {
       title: widget.title,
       trailing: widget.trailing,
       toastStyle: toastStyle,
+      expandTitleWidth: toastStyle.expandedTitle,
     );
 
     // Show the clipping with border radius

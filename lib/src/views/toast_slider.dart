@@ -130,6 +130,8 @@ class _ToastSliderState extends State<ToastSlider>
       title: widget.title,
       trailing: widget.trailing,
       toastStyle: toastStyle,
+      expandTitleWidth:
+          toastStyle.expandedTitle || toastSetting.showProgressBar,
     );
 
     // Show the progress bar if available

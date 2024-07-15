@@ -18,6 +18,9 @@ class ToastContainerWidget extends StatelessWidget {
   /// Styling of the toast
   final ToastStyle toastStyle;
 
+  /// Expand the width of the title
+  final bool expandTitleWidth;
+
   /// A container to display a toast message
   const ToastContainerWidget({
     super.key,
@@ -25,6 +28,7 @@ class ToastContainerWidget extends StatelessWidget {
     required this.title,
     required this.trailing,
     this.toastStyle = const ToastStyle(),
+    required this.expandTitleWidth,
   });
 
   @override
@@ -39,8 +43,14 @@ class ToastContainerWidget extends StatelessWidget {
       );
     }
 
-    if (leading != null || trailing != null) {
+    if (leading == null && trailing == null && expandTitleWidth) {
+      child = SizedBox(
+        width: double.maxFinite,
+        child: child,
+      );
+    } else {
       child = Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           if (leading != null)
             Padding(
@@ -49,9 +59,12 @@ class ToastContainerWidget extends StatelessWidget {
               ),
               child: leading,
             ),
-          Expanded(
-            child: title,
-          ),
+          if (expandTitleWidth)
+            Expanded(
+              child: title,
+            )
+          else
+            title,
           if (trailing != null)
             Padding(
               padding: EdgeInsets.only(
@@ -64,7 +77,6 @@ class ToastContainerWidget extends StatelessWidget {
     }
 
     child = Container(
-      width: double.maxFinite,
       padding: toastStyle.padding ?? const EdgeInsets.all(15),
       decoration: BoxDecoration(
         color: backgroundColor,

@@ -9,7 +9,7 @@
 
 A flutter sliding toast for displaying beautiful messages.
 
-## Breaking Changes
+## Breaking Changes v1.4.0
 
 The 1.4.0 version brings some breaking changes.
 
@@ -40,6 +40,7 @@ The 1.4.0 version brings some breaking changes.
 - Change toast's alignment positions and sliding toast's sliding directions
 - Define animation and display duration, max height and width, padding
 - Set title, leading, trailing widgets and disable the progressbar in sliding toast
+- Make title width dynamic or expanded
 - Use glassmorphism design or default success and error toast
 - Dismiss the sliding toast by sliding it horizontally or vertically
 - Dismiss the popup toast by sliding it horizontally
@@ -54,7 +55,7 @@ Add the following line to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_sliding_toast: ^1.4.0
+  flutter_sliding_toast: ^1.4.1
 ```
 
 ## 🚀 Usage

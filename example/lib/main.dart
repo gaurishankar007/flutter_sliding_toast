@@ -218,6 +218,26 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
+              onPressed: () {
+                InteractiveToast.pop(
+                  context,
+                  title: const Text(
+                    "Title is not expanded.",
+                  ),
+                  toastSetting: const PopupToastSetting(
+                    showFading: false,
+                    showScaling: false,
+                    animationDuration: Duration(seconds: 1),
+                    displayDuration: Duration(seconds: 3),
+                    toastAlignment: Alignment.center,
+                  ),
+                  toastStyle: const ToastStyle(expandedTitle: false),
+                );
+              },
+              child: textWidget("Small toast at center"),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
               onPressed: InteractiveToast.closeAllToast,
               child: textWidget("Close all toast"),
             ),

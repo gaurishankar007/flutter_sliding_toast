@@ -1,3 +1,8 @@
+## 1.4.1
+
+- Make the title width dynamic, by disabling progress bar and making 'expandedTitle' to false in toast style
+- Enabling progress bar will make title expanded even if 'expandedTitle' is true
+
 ## 1.4.0
 
 - Show popup toast with title, leading, and trailing widget
