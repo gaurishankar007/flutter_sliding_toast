@@ -34,7 +34,6 @@ class ToastContainerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color backgroundColor = toastStyle.backgroundColor;
-    Widget child = title;
 
     /// Adding transparency in background color for glassy effect
     if (toastStyle.glassBlur != null) {
@@ -43,40 +42,36 @@ class ToastContainerWidget extends StatelessWidget {
       );
     }
 
-    if (leading == null && trailing == null && expandTitleWidth) {
-      child = SizedBox(
-        width: double.maxFinite,
-        child: child,
-      );
-    } else {
-      child = Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (leading != null)
-            Padding(
-              padding: EdgeInsets.only(
-                right: toastStyle.titleLeadingGap,
-              ),
-              child: leading,
+    Widget child = Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (leading != null)
+          Padding(
+            padding: EdgeInsets.only(
+              right: toastStyle.titleLeadingGap,
             ),
-          if (expandTitleWidth)
-            Expanded(
-              child: title,
-            )
-          else
-            title,
-          if (trailing != null)
-            Padding(
-              padding: EdgeInsets.only(
-                left: toastStyle.titleTrailingGap,
-              ),
-              child: trailing,
+            child: leading,
+          ),
+        if (expandTitleWidth)
+          Expanded(
+            child: title,
+          )
+        else
+          Flexible(
+            child: title,
+          ),
+        if (trailing != null)
+          Padding(
+            padding: EdgeInsets.only(
+              left: toastStyle.titleTrailingGap,
             ),
-        ],
-      );
-    }
+            child: trailing,
+          ),
+      ],
+    );
 
     child = Container(
+      constraints: const BoxConstraints(),
       padding: toastStyle.padding ?? const EdgeInsets.all(15),
       decoration: BoxDecoration(
         color: backgroundColor,

@@ -1,3 +1,7 @@
+## 1.4.2
+
+- Overflow inside toast container bug is solved
+
 ## 1.4.1
 
 - Make the title width dynamic, by disabling progress bar and making 'expandedTitle' to false in toast style
