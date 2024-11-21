@@ -75,6 +75,8 @@ class ToastContainerWidget extends StatelessWidget {
       padding: toastStyle.padding ?? const EdgeInsets.all(15),
       decoration: BoxDecoration(
         color: backgroundColor,
+        gradient: toastStyle.gradient,
+        image: toastStyle.image,
         borderRadius: toastStyle.borderRadius,
         border: toastStyle.border,
       ),

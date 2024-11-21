@@ -7,7 +7,7 @@
 
 ---
 
-A flutter sliding toast for displaying beautiful messages.
+Enhance your app's UI with customizable, interactive toasts! This package offers both sliding & popup styles, with features like animation control, tap actions, and multiple dismiss options.
 
 ## Breaking Changes v1.4.0
 
@@ -23,14 +23,15 @@ The 1.4.0 version brings some breaking changes.
 ## 🎨 Screenshots
 
 <div display="flex" flex-wrap="wrap" align="center">
-  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1720411711/Flutter%20Sliding%20Toast%20Pub%20Package/mpajt61nkff1zzzkoynr.gif" width="30%">
-  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1720411957/Flutter%20Sliding%20Toast%20Pub%20Package/u0rhkp2zr7xfqcuoyfdy.gif" width="30%">
-  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1720411962/Flutter%20Sliding%20Toast%20Pub%20Package/fbqjeuu3pb4nlcuoonzj.gif" width="30%">
-  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1720411713/Flutter%20Sliding%20Toast%20Pub%20Package/cz0ijfq7uzhtpiewopjf.gif" width="30%">
-  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1720412052/Flutter%20Sliding%20Toast%20Pub%20Package/fuvrfgqdgou5ickj7w17.gif" width="30%">
-  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1720411805/Flutter%20Sliding%20Toast%20Pub%20Package/iwumvethuwfldkxdlgwx.gif" width="30%">
-  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1720411805/Flutter%20Sliding%20Toast%20Pub%20Package/i1l79zvmuyowwpxddfci.gif" width="30%">
-  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1720412087/Flutter%20Sliding%20Toast%20Pub%20Package/hntbiuj13cwvmfcrkzvi.gif" width="30%">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1732191907/Flutter%20Sliding%20Toast%20Pub%20Package/1_vh3h1t.gif" width="30%">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1732191984/Flutter%20Sliding%20Toast%20Pub%20Package/2_fxo2o9.gif" width="30%">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1732192053/Flutter%20Sliding%20Toast%20Pub%20Package/3_b55f5k.gif" width="30%">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1732192053/Flutter%20Sliding%20Toast%20Pub%20Package/4_e7yapo.gif" width="30%">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1732192053/Flutter%20Sliding%20Toast%20Pub%20Package/5_yk7oml.gif" width="30%">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1732192050/Flutter%20Sliding%20Toast%20Pub%20Package/6_he2w8v.gif" width="30%">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1732192052/Flutter%20Sliding%20Toast%20Pub%20Package/7_m1a4dr.gif" width="30%">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1732192051/Flutter%20Sliding%20Toast%20Pub%20Package/8_mpcv6j.gif" width="30%">
+  <img src="https://res.cloudinary.com/gaurishankar/image/upload/v1732192054/Flutter%20Sliding%20Toast%20Pub%20Package/9_u4zuhh.gif" width="30%">
 </div>
 
 ## 🎯 Features
@@ -39,11 +40,10 @@ The 1.4.0 version brings some breaking changes.
 - Show popup toasts, disable or modify fading and scaling behaviors
 - Change toast's alignment positions and sliding toast's sliding directions
 - Define animation and display duration, max height and width, padding
-- Set title, leading, trailing widgets and disable the progressbar in sliding toast
-- Make title width dynamic or expanded
-- Use glassmorphism design or default success and error toast
-- Dismiss the sliding toast by sliding it horizontally or vertically
-- Dismiss the popup toast by sliding it horizontally
+- Set title, leading, trailing widgets and make title width dynamic or expanded
+- Disable the progressbar in sliding toast if needed
+- Use glassmorphism/gradient/decorated background or default success and error toast
+- Slide any direction to dismiss sliding toast and vertically for popup toast
 - Dismiss an individual or all toasts programmatically
 - Pause the animation with long press and release it to continue
 - Execute a function after the toast is tapped or disposed
@@ -55,7 +55,7 @@ Add the following line to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_sliding_toast: ^1.4.2
+  flutter_sliding_toast: ^1.4.3
 ```
 
 ## 🚀 Usage

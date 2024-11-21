@@ -1,3 +1,8 @@
+## 1.4.3
+
+- Gradient color and decoration image added inside toast container
+
+
 ## 1.4.2
 
 - Overflow inside toast container bug is solved

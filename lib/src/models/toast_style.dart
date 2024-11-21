@@ -18,6 +18,12 @@ class ToastStyle {
   /// Default is [Colors.white]
   final Color backgroundColor;
 
+  /// The gradient color of the toast.
+  final Gradient? gradient;
+
+  /// The background image to be paint above [backgroundColor] or [gradient].
+  final DecorationImage? image;
+
   /// The amount of blur for glassier effect.
   /// A [backgroundColorOpacity] of 80% is given
   /// only if not given explicitly.
@@ -53,9 +59,11 @@ class ToastStyle {
     this.padding,
     this.titleLeadingGap = 5,
     this.titleTrailingGap = 5,
+    this.backgroundColor = Colors.white,
+    this.gradient,
+    this.image,
     this.glassBlur,
     this.backgroundColorOpacity,
-    this.backgroundColor = Colors.white,
     this.boxShadow = const [
       BoxShadow(
         // First two hexadecimal digits in the color refer to the opacity
@@ -76,6 +84,8 @@ class ToastStyle {
     double? titleLeadingGap,
     double? titleTrailingGap,
     Color? backgroundColor,
+    Gradient? gradient,
+    DecorationImage? image,
     double? glassBlur,
     double? backgroundColorOpacity,
     List<BoxShadow>? boxShadow,
@@ -89,6 +99,8 @@ class ToastStyle {
       titleLeadingGap: titleLeadingGap ?? this.titleLeadingGap,
       titleTrailingGap: titleTrailingGap ?? this.titleTrailingGap,
       backgroundColor: backgroundColor ?? this.backgroundColor,
+      gradient: gradient ?? this.gradient,
+      image: image ?? this.image,
       glassBlur: glassBlur ?? this.glassBlur,
       backgroundColorOpacity:
           backgroundColorOpacity ?? this.backgroundColorOpacity,
