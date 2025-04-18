@@ -8,6 +8,8 @@ import 'views/toast_popup.dart';
 import 'views/toast_slider.dart';
 
 class InteractiveToast {
+  const InteractiveToast._();
+
   static final _toastControllers = Queue<ToastController>();
   static BuildContext? _context;
   static OverlayState? _overlayState;
