@@ -87,21 +87,12 @@ class _ToastPopupState extends State<ToastPopup> with TickerProviderStateMixin {
     timeController = AnimationController(vsync: this, duration: duration);
 
     // Create a curved tween animation for the slide
-    fadeAnimation = Tween<double>(
-      begin: .1,
-      end: 1,
-    ).animate(
-      CurvedAnimation(
-        parent: fadeController,
-        curve: toastSetting.fadingCurve,
-      ),
+    fadeAnimation = Tween<double>(begin: .1, end: 1).animate(
+      CurvedAnimation(parent: fadeController, curve: toastSetting.fadingCurve),
     );
 
     // Create a size animation for the progress bar
-    scaleAnimation = Tween<double>(
-      begin: .5,
-      end: 1,
-    ).animate(
+    scaleAnimation = Tween<double>(begin: .5, end: 1).animate(
       CurvedAnimation(
         parent: scaleController,
         curve: toastSetting.scalingCurve,
@@ -154,40 +145,29 @@ class _ToastPopupState extends State<ToastPopup> with TickerProviderStateMixin {
     );
 
     // Show the clipping with border radius
-    child = ClipRRect(
-      borderRadius: toastStyle.borderRadius,
-      child: child,
-    );
+    child = ClipRRect(borderRadius: toastStyle.borderRadius, child: child);
 
     // Show the box shadow if available
     if (toastStyle.boxShadow != null) {
       child = Container(
-        decoration: BoxDecoration(
-          boxShadow: toastStyle.boxShadow,
-        ),
+        decoration: BoxDecoration(boxShadow: toastStyle.boxShadow),
         child: child,
       );
     }
 
     if (toastSetting.showFading) {
-      child = FadeTransition(
-        opacity: fadeAnimation,
-        child: child,
-      );
+      child = FadeTransition(opacity: fadeAnimation, child: child);
     }
 
     if (toastSetting.showScaling) {
-      child = ScaleTransition(
-        scale: scaleAnimation,
-        child: child,
-      );
+      child = ScaleTransition(scale: scaleAnimation, child: child);
     }
 
     return ToastPositionWidget(
       alignment: toastSetting.toastAlignment,
       padding: toastSetting.padding,
-      maxHeight: toastSetting.maxHeight,
-      maxWidth: toastSetting.maxWidth,
+      newMaxHeight: toastSetting.maxHeight,
+      newMaxWidth: toastSetting.maxWidth,
       child: Dismissible(
         key: UniqueKey(),
         direction: DismissDirection.horizontal,

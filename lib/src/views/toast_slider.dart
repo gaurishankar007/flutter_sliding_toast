@@ -83,17 +83,11 @@ class _ToastSliderState extends State<ToastSlider>
 
     // Create a curved tween animation for the slide
     slideAnimation = tween.animate(
-      CurvedAnimation(
-        parent: slideController,
-        curve: toastSetting.curve,
-      ),
+      CurvedAnimation(parent: slideController, curve: toastSetting.curve),
     );
 
     // Create a size animation for the progress bar
-    sizeAnimation = Tween<double>(
-      begin: 1,
-      end: 0,
-    ).animate(sizeController);
+    sizeAnimation = Tween<double>(begin: 1, end: 0).animate(sizeController);
 
     // Start the animation
     slideController.forward();
@@ -150,17 +144,12 @@ class _ToastSliderState extends State<ToastSlider>
     }
 
     // Show the clipping with border radius
-    child = ClipRRect(
-      borderRadius: toastStyle.borderRadius,
-      child: child,
-    );
+    child = ClipRRect(borderRadius: toastStyle.borderRadius, child: child);
 
     // Show the box shadow if available
     if (toastStyle.boxShadow != null) {
       child = Container(
-        decoration: BoxDecoration(
-          boxShadow: toastStyle.boxShadow,
-        ),
+        decoration: BoxDecoration(boxShadow: toastStyle.boxShadow),
         child: child,
       );
     }
@@ -168,8 +157,8 @@ class _ToastSliderState extends State<ToastSlider>
     return ToastPositionWidget(
       alignment: toastSetting.toastAlignment,
       padding: toastSetting.padding,
-      maxHeight: toastSetting.maxHeight,
-      maxWidth: toastSetting.maxWidth,
+      newMaxHeight: toastSetting.maxHeight,
+      newMaxWidth: toastSetting.maxWidth,
       child: Dismissible(
         key: UniqueKey(),
         direction: toastSetting.toastStartPosition.dismissDirection(),
@@ -188,10 +177,7 @@ class _ToastSliderState extends State<ToastSlider>
           onLongPress: () => sizeController.stop(),
           // Forward the animation when long press ends
           onLongPressEnd: (details) => sizeController.forward(),
-          child: SlideTransition(
-            position: slideAnimation,
-            child: child,
-          ),
+          child: SlideTransition(position: slideAnimation, child: child),
         ),
       ),
     );

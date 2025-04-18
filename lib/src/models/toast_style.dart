@@ -71,7 +71,7 @@ class ToastStyle {
         blurRadius: 5,
         spreadRadius: 3,
         offset: Offset(2, 2),
-      )
+      ),
     ],
     this.borderRadius = const BorderRadius.all(Radius.circular(8)),
     this.border,

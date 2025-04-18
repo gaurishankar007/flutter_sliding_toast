@@ -5,15 +5,9 @@ class ToastController {
   final String id;
   final VoidCallback closeToast;
 
-  const ToastController({
-    required this.id,
-    required this.closeToast,
-  });
+  const ToastController({required this.id, required this.closeToast});
 
-  factory ToastController.empty() => ToastController(
-        id: "",
-        closeToast: () {},
-      );
+  factory ToastController.empty() => ToastController(id: "", closeToast: () {});
 
   @override
   String toString() => 'ToastController(id: $id, closeToast: $closeToast)';

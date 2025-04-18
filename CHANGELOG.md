@@ -1,3 +1,7 @@
+## 1.5.1
+
+- Fixed an issue where the toast container's maxHeight and maxWidth constraints were not being applied correctly.
+
 ## 1.5.0
 
 - Either use context or provide an existing overlay state
