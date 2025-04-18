@@ -37,8 +37,8 @@ class ToastContainerWidget extends StatelessWidget {
 
     /// Adding transparency in background color for glassy effect
     if (toastStyle.glassBlur != null) {
-      backgroundColor = backgroundColor.withOpacity(
-        toastStyle.backgroundColorOpacity ?? .8,
+      backgroundColor = backgroundColor.withAlpha(
+        ((toastStyle.backgroundColorOpacity ?? .8) * .255).toInt(),
       );
     }
 
@@ -47,24 +47,16 @@ class ToastContainerWidget extends StatelessWidget {
       children: [
         if (leading != null)
           Padding(
-            padding: EdgeInsets.only(
-              right: toastStyle.titleLeadingGap,
-            ),
+            padding: EdgeInsets.only(right: toastStyle.titleLeadingGap),
             child: leading,
           ),
         if (expandTitleWidth)
-          Expanded(
-            child: title,
-          )
+          Expanded(child: title)
         else
-          Flexible(
-            child: title,
-          ),
+          Flexible(child: title),
         if (trailing != null)
           Padding(
-            padding: EdgeInsets.only(
-              left: toastStyle.titleTrailingGap,
-            ),
+            padding: EdgeInsets.only(left: toastStyle.titleTrailingGap),
             child: trailing,
           ),
       ],

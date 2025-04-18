@@ -9,17 +9,6 @@
 
 Enhance your app's UI with customizable, interactive toasts! This package offers both sliding & popup styles, with features like animation control, tap actions, and multiple dismiss options.
 
-## Breaking Changes v1.4.0
-
-The 1.4.0 version brings some breaking changes.
-
-- 'SlidingToast' renamed to 'InteractiveToast' along with it's methods
-  - 'show' renamed to 'slide'
-  - 'showSuccess' renamed to 'slideSuccess'
-  - 'showError' renamed to 'slideError'
-- 'ToastSetting' renamed to 'SlidingToastSetting'
-- 'disableMultiTapping' moved from 'show' ('slide' currently) function to 'ToastSetting' ('SlidingToastSetting' currently).
-
 ## 🎨 Screenshots
 
 <div display="flex" flex-wrap="wrap" align="center">
@@ -48,6 +37,7 @@ The 1.4.0 version brings some breaking changes.
 - Pause the animation with long press and release it to continue
 - Execute a function after the toast is tapped or disposed
 - Disable Multiple tapping to execute 'onTap' callback only one time
+- Initialize context or overlay state early for persistent toast availability
 
 ## ⚙️ Getting Started
 
@@ -55,7 +45,7 @@ Add the following line to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_sliding_toast: ^1.4.3
+  flutter_sliding_toast: ^1.5.0
 ```
 
 ## 🚀 Usage
@@ -80,13 +70,13 @@ class MyHomePage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 InteractiveToast.slide(
-                  context,
-                  leading: leadingWidget(),
+                  context: context,
+                  leading: _leadingWidget(),
                   title: const Text(
                     "Hi there! I'm a sliding toast 😎. "
                     "Dismiss me by sliding upward.",
                   ),
-                  trailing: trailingWidget(),
+                  trailing: _trailingWidget(),
                   toastStyle: const ToastStyle(titleLeadingGap: 10),
                   toastSetting: const SlidingToastSetting(
                     animationDuration: Duration(seconds: 1),
@@ -96,18 +86,19 @@ class MyHomePage extends StatelessWidget {
                   ),
                 );
               },
-              child: textWidget("Sliding toast from top center"),
+              child: _textWidget("Sliding toast from top center"),
             ),
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
+                final overlayState = Overlay.of(context);
                 InteractiveToast.pop(
-                  context,
+                  overlayState: overlayState,
                   title: const Text(
                     "Hi! I'm a popup toast 🐺. "
                     "I have fading and scaling effect.",
                   ),
-                  trailing: trailingWidget(),
+                  trailing: _trailingWidget(),
                   toastSetting: const PopupToastSetting(
                     animationDuration: Duration(seconds: 1),
                     displayDuration: Duration(seconds: 3),
@@ -115,7 +106,7 @@ class MyHomePage extends StatelessWidget {
                   ),
                 );
               },
-              child: textWidget("Popup toast at bottom center"),
+              child: _textWidget("Popup toast at bottom center"),
             ),
           ],
         ),
@@ -123,17 +114,17 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
-  Text textWidget(String text) => Text(
+  Text _textWidget(String text) => Text(
         text,
         style: const TextStyle(fontSize: 16),
       );
 
-  Icon trailingWidget() => const Icon(
+  Icon _trailingWidget() => const Icon(
         Icons.person,
         color: Colors.deepPurple,
       );
 
-  Container leadingWidget() {
+  Container _leadingWidget() {
     return Container(
       width: 40,
       height: 40,
@@ -142,7 +133,7 @@ class MyHomePage extends StatelessWidget {
         color: Colors.purple,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.1),
+            color: Colors.black.withAlpha(25),
             spreadRadius: 3,
             blurRadius: 4,
           ),

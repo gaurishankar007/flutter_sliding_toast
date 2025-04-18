@@ -22,9 +22,7 @@ class _MyAppState extends State<MyApp> {
       title: 'Flutter Sliding Toast Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: color,
-        ),
+        colorScheme: ColorScheme.fromSeed(seedColor: color),
         appBarTheme: AppBarTheme(
           backgroundColor: color,
           foregroundColor: Colors.white,
@@ -36,9 +34,9 @@ class _MyAppState extends State<MyApp> {
   }
 
   changeColor() => setState(() {
-        colorChanged ? color = Colors.deepPurple : color = Colors.green;
-        colorChanged = !colorChanged;
-      });
+    colorChanged ? color = Colors.deepPurple : color = Colors.green;
+    colorChanged = !colorChanged;
+  });
 }
 
 class MyHomePage extends StatefulWidget {
@@ -50,6 +48,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState() {
+    super.initState();
+
+    /// Setup overlay state when the UI build is finished.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      InteractiveToast.initializeOverlayState(Overlay.of(context));
+      // Or setup context
+      // InteractiveToast.setupContext(context);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,13 +78,13 @@ class _MyHomePageState extends State<MyHomePage> {
               ElevatedButton(
                 onPressed: () {
                   InteractiveToast.slide(
-                    context,
-                    leading: leadingWidget(),
+                    context: context,
+                    leading: _leadingWidget(),
                     title: const Text(
                       "Hi there! I'm a simple toast 😎."
                       " Dismiss me by sliding downward.",
                     ),
-                    trailing: const TrailingWidget(),
+                    trailing: _trailingWidget(),
                     toastStyle: const ToastStyle(titleLeadingGap: 10),
                     toastSetting: const SlidingToastSetting(
                       animationDuration: Duration(seconds: 1),
@@ -83,18 +93,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   );
                 },
-                child: textWidget("Toast from bottom center"),
+                child: _textWidget("Toast from bottom center"),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   InteractiveToast.slide(
-                    context,
+                    context: context,
                     title: const Text(
                       "Hi there! I'm a glassy toast 🦄."
                       "Dismiss me by sliding upward.",
                     ),
-                    trailing: const TrailingWidget(),
+                    trailing: _trailingWidget(),
                     toastSetting: const SlidingToastSetting(
                       animationDuration: Duration(seconds: 1),
                       displayDuration: Duration(seconds: 2),
@@ -108,13 +118,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   );
                 },
-                child: textWidget("Glassy toast from top center"),
+                child: _textWidget("Glassy toast from top center"),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  InteractiveToast.slideError(
-                    context,
+                  final overlayState = Overlay.of(context);
+                  InteractiveToast.slide(
+                    overlayState: overlayState,
                     title: const Text(
                       "Hi there! I'm a error toast 😈. "
                       "Dismiss me by sliding horizontally.",
@@ -124,31 +135,57 @@ class _MyHomePageState extends State<MyHomePage> {
                       toastAlignment: Alignment.bottomLeft,
                       displayDuration: Duration(seconds: 2),
                     ),
+                    trailing: const Icon(
+                      Icons.warning_rounded,
+                      color: Colors.red,
+                    ),
+                    toastStyle: ToastStyle(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.red.withAlpha(25),
+                          blurRadius: 5,
+                          spreadRadius: 3,
+                          offset: const Offset(2, 2),
+                        ),
+                      ],
+                      progressBarColor: Colors.red,
+                    ),
                   );
                 },
-                child: textWidget("Error toast from bottom left"),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  InteractiveToast.slideSuccess(
-                    context,
-                    title: const Text(
-                      "Hi there! I'm a success toast 🦁",
-                    ),
-                    toastSetting: const SlidingToastSetting(
-                      toastStartPosition: ToastPosition.right,
-                      toastAlignment: Alignment.topRight,
-                    ),
-                  );
-                },
-                child: textWidget("Success toast from Top Right"),
+                child: _textWidget("Error toast from bottom left"),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   InteractiveToast.slide(
-                    context,
+                    title: const Text("Hi there! I'm a success toast 🦁"),
+                    toastSetting: const SlidingToastSetting(
+                      toastStartPosition: ToastPosition.right,
+                      toastAlignment: Alignment.topRight,
+                    ),
+                    trailing: const Icon(
+                      Icons.check_circle_rounded,
+                      color: Colors.green,
+                    ),
+                    toastStyle: ToastStyle(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.green.withAlpha(38),
+                          blurRadius: 5,
+                          spreadRadius: 3,
+                          offset: const Offset(2, 2),
+                        ),
+                      ],
+                      progressBarColor: Colors.green,
+                    ),
+                  );
+                },
+                child: _textWidget("Success toast from Top Right"),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  InteractiveToast.slide(
                     title: const Text(
                       "I'm a bit more modified toast 🐷 with only title widget, "
                       "without progressBar and reverse animation.",
@@ -171,26 +208,25 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.blue.withOpacity(.2),
+                          color: Colors.blue.withAlpha(51),
                           blurRadius: 5,
                           spreadRadius: 2,
-                        )
+                        ),
                       ],
                     ),
                   );
                 },
-                child: textWidget("Decorated toast from center left"),
+                child: _textWidget("Decorated toast from center left"),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   InteractiveToast.pop(
-                    context,
                     title: const Text(
                       "Hi! I'm a popup toast with onTap callback 🐺."
                       "Tap me to change theme color.",
                     ),
-                    trailing: const TrailingWidget(),
+                    trailing: _trailingWidget(),
                     toastSetting: const PopupToastSetting(
                       animationDuration: Duration(seconds: 1),
                       displayDuration: Duration(seconds: 3),
@@ -199,17 +235,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     onTapped: widget.changeColor,
                   );
                 },
-                child: textWidget("Callback toast at bottom"),
+                child: _textWidget("Callback toast at bottom"),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   InteractiveToast.pop(
-                    context,
+                    context: context,
                     title: const Text(
                       "Hello! I'm a popup toast 🤡 with no fading and scaling.",
                     ),
-                    trailing: const TrailingWidget(),
+                    trailing: _trailingWidget(),
                     toastSetting: const PopupToastSetting(
                       showFading: false,
                       showScaling: false,
@@ -219,18 +255,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   );
                 },
-                child: textWidget("Popup toast at top right"),
+                child: _textWidget("Popup toast at top right"),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   InteractiveToast.pop(
-                    context,
                     title: const Text(
                       "Title is not expanded.",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
+                      style: TextStyle(color: Colors.white),
                     ),
                     toastSetting: const PopupToastSetting(
                       showFading: false,
@@ -242,20 +275,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     toastStyle: const ToastStyle(
                       expandedTitle: false,
                       gradient: LinearGradient(
-                        colors: [
-                          Colors.purple,
-                          Color(0xFF03589E),
-                        ],
+                        colors: [Colors.purple, Color(0xFF03589E)],
                       ),
                     ),
                   );
                 },
-                child: textWidget("Small gradient toast at center"),
+                child: _textWidget("Small gradient toast at center"),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: InteractiveToast.closeAllToast,
-                child: textWidget("Close all toast"),
+                child: _textWidget("Close all toast"),
               ),
             ],
           ),
@@ -264,7 +294,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Container leadingWidget() {
+  Container _leadingWidget() {
     return Container(
       width: 40,
       height: 40,
@@ -273,34 +303,20 @@ class _MyHomePageState extends State<MyHomePage> {
         color: Colors.purple,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.1),
+            color: Colors.black.withAlpha(25),
             spreadRadius: 3,
             blurRadius: 4,
           ),
         ],
       ),
       alignment: Alignment.center,
-      child: const Text(
-        "🦄",
-        style: TextStyle(fontSize: 20),
-      ),
+      child: const Text("🦄", style: TextStyle(fontSize: 20)),
     );
   }
 
-  Text textWidget(String text) => Text(
-        text,
-        style: const TextStyle(fontSize: 16),
-      );
-}
+  Text _textWidget(String text) =>
+      Text(text, style: const TextStyle(fontSize: 16));
 
-class TrailingWidget extends StatelessWidget {
-  const TrailingWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Icon(
-      Icons.person,
-      color: Theme.of(context).colorScheme.primary,
-    );
-  }
+  Icon _trailingWidget() =>
+      Icon(Icons.person, color: Theme.of(context).colorScheme.primary);
 }

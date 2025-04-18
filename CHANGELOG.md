@@ -1,7 +1,12 @@
+## 1.5.0
+
+- Either use context or provide an existing overlay state
+- Initialize context or overlay state early for persistent toast availability
+- Updated sdk version and depreciated methods
+
 ## 1.4.3
 
 - Gradient color and decoration image added inside toast container
-
 
 ## 1.4.2
 

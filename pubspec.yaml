@@ -1,32 +1,17 @@
 name: flutter_sliding_toast
 description: "A flutter package for displaying messages with custom styling and animation behavior."
-version: 1.4.3
+version: 1.5.0
 homepage: https://github.com/gaurishankar007/flutter_sliding_toast
 repository: https://github.com/gaurishankar007/flutter_sliding_toast
 documentation: https://github.com/gaurishankar007/flutter_sliding_toast
 issue_tracker: https://github.com/gaurishankar007/flutter_sliding_toast/issues
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
-  flutter: ">=1.17.0"
+  sdk: ^3.7.2
 
 dependencies:
   flutter:
     sdk: flutter
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^4.0.0
-
-flutter:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
-
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+  flutter_lints: ^5.0.0
