@@ -50,10 +50,14 @@ class ToastStyle {
   /// Default is [Theme.of(context).primaryColor]
   final Color? progressBarColor;
 
-  /// The width of the title widget expanding to the available width
+  /// The width of the title widget expanding to the available width.
   /// Default is [true]
   /// * If progress bar is enabled, then title will be always expanded
   final bool expandedTitle;
+
+  /// The cross axis alignment of the leading, title, and trailing
+  /// which are aligned in a row.
+  final CrossAxisAlignment widgetCrossAxisAlignment;
 
   const ToastStyle({
     this.padding,
@@ -77,6 +81,7 @@ class ToastStyle {
     this.border,
     this.progressBarColor,
     this.expandedTitle = true,
+    this.widgetCrossAxisAlignment = CrossAxisAlignment.center,
   });
 
   ToastStyle copyWith({
@@ -93,6 +98,7 @@ class ToastStyle {
     Border? border,
     Color? progressBarColor,
     bool? expandedTitle,
+    CrossAxisAlignment? widgetCrossAxisAlignment,
   }) {
     return ToastStyle(
       padding: padding ?? this.padding,
@@ -109,6 +115,8 @@ class ToastStyle {
       border: border ?? this.border,
       progressBarColor: progressBarColor ?? this.progressBarColor,
       expandedTitle: expandedTitle ?? this.expandedTitle,
+      widgetCrossAxisAlignment:
+          widgetCrossAxisAlignment ?? this.widgetCrossAxisAlignment,
     );
   }
 }

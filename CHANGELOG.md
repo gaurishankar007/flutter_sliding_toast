@@ -1,3 +1,7 @@
+## 1.5.2
+
+- Added cross axis alignment for the leading, title, and trailing widgets which are aligned in a row.
+
 ## 1.5.1
 
 - Fixed an issue where the toast container's maxHeight and maxWidth constraints were not being applied correctly.

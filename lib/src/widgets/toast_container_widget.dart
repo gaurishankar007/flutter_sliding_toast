@@ -44,6 +44,7 @@ class ToastContainerWidget extends StatelessWidget {
 
     Widget child = Row(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: toastStyle.widgetCrossAxisAlignment,
       children: [
         if (leading != null)
           Padding(

@@ -45,7 +45,7 @@ Add the following line to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_sliding_toast: ^1.5.1
+  flutter_sliding_toast: ^1.5.2
 ```
 
 ## 🚀 Usage
