@@ -11,25 +11,13 @@ enum ToastPosition {
   Tween<Offset> tween() {
     switch (this) {
       case ToastPosition.top:
-        return Tween(
-          begin: const Offset(0, -1),
-          end: const Offset(0, 0),
-        );
+        return Tween(begin: const Offset(0, -1), end: Offset.zero);
       case ToastPosition.right:
-        return Tween(
-          begin: const Offset(1, 0),
-          end: const Offset(0, 0),
-        );
+        return Tween(begin: const Offset(1, 0), end: Offset.zero);
       case ToastPosition.bottom:
-        return Tween(
-          begin: const Offset(0, 1),
-          end: const Offset(0, 0),
-        );
+        return Tween(begin: const Offset(0, 1), end: Offset.zero);
       case ToastPosition.left:
-        return Tween(
-          begin: const Offset(-1, 0),
-          end: const Offset(0, 0),
-        );
+        return Tween(begin: const Offset(-1, 0), end: Offset.zero);
     }
   }
 

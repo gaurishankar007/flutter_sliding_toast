@@ -45,7 +45,7 @@ Add the following line to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_sliding_toast: ^1.5.2
+  flutter_sliding_toast: ^1.5.3
 ```
 
 ## 🚀 Usage
@@ -59,7 +59,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
-        title: const Text("Sliding & Popup Toast"),
+        title: const Text('Sliding & Popup Toast'),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -74,19 +74,18 @@ class MyHomePage extends StatelessWidget {
                   leading: _leadingWidget(),
                   title: const Text(
                     "Hi there! I'm a sliding toast 😎. "
-                    "Dismiss me by sliding upward.",
+                    'Dismiss me by sliding upward.',
                   ),
                   trailing: _trailingWidget(),
                   toastStyle: const ToastStyle(titleLeadingGap: 10),
                   toastSetting: const SlidingToastSetting(
-                    animationDuration: Duration(seconds: 1),
                     displayDuration: Duration(seconds: 2),
                     toastStartPosition: ToastPosition.top,
                     toastAlignment: Alignment.topCenter,
                   ),
                 );
               },
-              child: _textWidget("Sliding toast from top center"),
+              child: _textWidget('Sliding toast from top center'),
             ),
             const SizedBox(height: 30),
             ElevatedButton(
@@ -96,17 +95,16 @@ class MyHomePage extends StatelessWidget {
                   overlayState: overlayState,
                   title: const Text(
                     "Hi! I'm a popup toast 🐺. "
-                    "I have fading and scaling effect.",
+                    'I have fading and scaling effect.',
                   ),
                   trailing: _trailingWidget(),
                   toastSetting: const PopupToastSetting(
                     animationDuration: Duration(seconds: 1),
                     displayDuration: Duration(seconds: 3),
-                    toastAlignment: Alignment.bottomCenter,
                   ),
                 );
               },
-              child: _textWidget("Popup toast at bottom center"),
+              child: _textWidget('Popup toast at bottom center'),
             ),
           ],
         ),
@@ -114,15 +112,10 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
-  Text _textWidget(String text) => Text(
-        text,
-        style: const TextStyle(fontSize: 16),
-      );
+  Text _textWidget(String text) =>
+      Text(text, style: const TextStyle(fontSize: 16));
 
-  Icon _trailingWidget() => const Icon(
-        Icons.person,
-        color: Colors.deepPurple,
-      );
+  Icon _trailingWidget() => const Icon(Icons.person, color: Colors.deepPurple);
 
   Container _leadingWidget() {
     return Container(
@@ -140,10 +133,7 @@ class MyHomePage extends StatelessWidget {
         ],
       ),
       alignment: Alignment.center,
-      child: const Text(
-        "🦄",
-        style: TextStyle(fontSize: 20),
-      ),
+      child: const Text('🦄', style: TextStyle(fontSize: 20)),
     );
   }
 }

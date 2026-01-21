@@ -15,10 +15,10 @@ class InteractiveToast {
   static OverlayState? _overlayState;
 
   /// Initialize context early so that toasts can be shown without context later.
-  static initializeContext(BuildContext context) => _context = context;
+  static void initializeContext(BuildContext context) => _context = context;
 
   /// Initialize overlay state early so that toasts can be shown without overlay state later.
-  static initializeOverlayState(OverlayState overlayState) =>
+  static void initializeOverlayState(OverlayState overlayState) =>
       _overlayState = overlayState;
 
   /// If [overlayState] is provided, then [context] will not be used.
@@ -30,8 +30,8 @@ class InteractiveToast {
     Widget? trailing,
     SlidingToastSetting toastSetting = const SlidingToastSetting(),
     ToastStyle toastStyle = const ToastStyle(),
-    Function()? onDisposed,
-    Function()? onTapped,
+    void Function()? onDisposed,
+    void Function()? onTapped,
   }) {
     /// Updating global values if they are configured before
     context ??= _context;
@@ -49,28 +49,28 @@ class InteractiveToast {
     /// the overlay whenever the animation is finished
     newOverlayState = overlayState ?? Overlay.of(context!);
     final overlayEntry = OverlayEntry(
-      builder:
-          (context) => ToastSlider(
-            toastController: toastController,
-            leading: leading,
-            title: title,
-            trailing: trailing,
-            toastSetting: toastSetting,
-            toastStyle: toastStyle,
-            onDisposed: onDisposed,
-            onTapped: onTapped,
-          ),
+      builder: (context) => ToastSlider(
+        toastController: toastController,
+        leading: leading,
+        title: title,
+        trailing: trailing,
+        toastSetting: toastSetting,
+        toastStyle: toastStyle,
+        onDisposed: onDisposed,
+        onTapped: onTapped,
+      ),
     );
     newOverlayState.insert(overlayEntry);
 
     /// Inserting toast controller to a list
-    String toastId = getUniqueString();
+    final String toastId = getUniqueString();
     toastController = ToastController(
       id: toastId,
       closeToast: () {
         if (overlayEntry.mounted) {
-          overlayEntry.remove();
-          overlayEntry.dispose();
+          overlayEntry
+            ..remove()
+            ..dispose();
           onDisposed?.call();
         }
 
@@ -94,8 +94,8 @@ class InteractiveToast {
     Widget? trailing,
     PopupToastSetting toastSetting = const PopupToastSetting(),
     ToastStyle toastStyle = const ToastStyle(),
-    Function()? onDisposed,
-    Function()? onTapped,
+    void Function()? onDisposed,
+    void Function()? onTapped,
   }) {
     /// Updating global values if they are configured before
     context ??= _context;
@@ -113,28 +113,28 @@ class InteractiveToast {
     /// the overlay whenever the animation is finished
     newOverlayState = overlayState ?? Overlay.of(context!);
     final overlayEntry = OverlayEntry(
-      builder:
-          (context) => ToastPopup(
-            toastController: toastController,
-            leading: leading,
-            title: title,
-            trailing: trailing,
-            toastSetting: toastSetting,
-            toastStyle: toastStyle,
-            onDisposed: onDisposed,
-            onTapped: onTapped,
-          ),
+      builder: (context) => ToastPopup(
+        toastController: toastController,
+        leading: leading,
+        title: title,
+        trailing: trailing,
+        toastSetting: toastSetting,
+        toastStyle: toastStyle,
+        onDisposed: onDisposed,
+        onTapped: onTapped,
+      ),
     );
     newOverlayState.insert(overlayEntry);
 
     /// Inserting toast controller to a list
-    String toastId = getUniqueString();
+    final String toastId = getUniqueString();
     toastController = ToastController(
       id: toastId,
       closeToast: () {
         if (overlayEntry.mounted) {
-          overlayEntry.remove();
-          overlayEntry.dispose();
+          overlayEntry
+            ..remove()
+            ..dispose();
           onDisposed?.call();
         }
 
@@ -150,7 +150,7 @@ class InteractiveToast {
   }
 
   /// Close all the toasts one by one
-  static closeAllToast() {
+  static void closeAllToast() {
     while (_toastControllers.isNotEmpty) {
       _toastControllers.removeFirst().closeToast();
     }
@@ -159,7 +159,7 @@ class InteractiveToast {
   /// Default toast for showing success message
   /// The icon and box shadow for this toast is fixed
   @Deprecated(
-    "This method is depreciated and will be removed in the future. Use the slide method instead",
+    'This method is depreciated and will be removed in the future. Use the slide method instead',
   )
   static ToastController slideSuccess({
     BuildContext? context,
@@ -169,8 +169,8 @@ class InteractiveToast {
     bool showProgressBar = true,
     SlidingToastSetting toastSetting = const SlidingToastSetting(),
     ToastStyle toastStyle = const ToastStyle(),
-    Function()? onDisposed,
-    Function()? onTapped,
+    void Function()? onDisposed,
+    void Function()? onTapped,
   }) {
     return slide(
       context: context,
@@ -201,7 +201,7 @@ class InteractiveToast {
   /// Default toast for showing error message
   /// The icon and box shadow for this toast is fixed
   @Deprecated(
-    "This method is depreciated and will be removed in the future. Use the slide method instead",
+    'This method is depreciated and will be removed in the future. Use the slide method instead',
   )
   static ToastController slideError({
     BuildContext? context,
@@ -211,8 +211,8 @@ class InteractiveToast {
     bool showProgressBar = true,
     SlidingToastSetting toastSetting = const SlidingToastSetting(),
     ToastStyle toastStyle = const ToastStyle(),
-    Function()? onDisposed,
-    Function()? onTapped,
+    void Function()? onDisposed,
+    void Function()? onTapped,
     bool disableMultiTapping = false,
   }) {
     return slide(
@@ -244,7 +244,7 @@ class InteractiveToast {
   /// Default toast for showing success message
   /// The icon and box shadow for this toast is fixed
   @Deprecated(
-    "This method is depreciated and will be removed in the future. Use the pop method instead",
+    'This method is depreciated and will be removed in the future. Use the pop method instead',
   )
   static ToastController popSuccess({
     BuildContext? context,
@@ -253,8 +253,8 @@ class InteractiveToast {
     double? checkIconSize,
     PopupToastSetting toastSetting = const PopupToastSetting(),
     ToastStyle toastStyle = const ToastStyle(),
-    Function()? onDisposed,
-    Function()? onTapped,
+    void Function()? onDisposed,
+    void Function()? onTapped,
   }) {
     return pop(
       context: context,
@@ -285,7 +285,7 @@ class InteractiveToast {
   /// Default toast for showing error message
   /// The icon and box shadow for this toast is fixed
   @Deprecated(
-    "This method is depreciated and will be removed in the future. Use the pop method instead",
+    'This method is depreciated and will be removed in the future. Use the pop method instead',
   )
   static ToastController popError({
     BuildContext? context,
@@ -294,8 +294,8 @@ class InteractiveToast {
     double? checkIconSize,
     PopupToastSetting toastSetting = const PopupToastSetting(),
     ToastStyle toastStyle = const ToastStyle(),
-    Function()? onDisposed,
-    Function()? onTapped,
+    void Function()? onDisposed,
+    void Function()? onTapped,
     bool disableMultiTapping = false,
   }) {
     return pop(

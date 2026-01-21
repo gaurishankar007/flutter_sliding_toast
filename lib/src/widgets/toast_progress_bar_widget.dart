@@ -4,10 +4,6 @@ import '../models/sliding_toast_setting.dart';
 import '../models/toast_style.dart';
 
 class ToastProgressBarWidget extends StatelessWidget {
-  final Animation<double> animation;
-  final ToastStyle toastStyle;
-  final SlidingToastSetting toastSetting;
-
   /// A progress bar to show the remaining time left to dismiss the toast
   const ToastProgressBarWidget({
     super.key,
@@ -15,11 +11,14 @@ class ToastProgressBarWidget extends StatelessWidget {
     required this.toastStyle,
     required this.toastSetting,
   });
+  final Animation<double> animation;
+  final ToastStyle toastStyle;
+  final SlidingToastSetting toastSetting;
 
   @override
   Widget build(BuildContext context) {
-    Color primaryColor = Theme.of(context).primaryColor;
-    Color color = toastStyle.progressBarColor ?? primaryColor;
+    final Color primaryColor = Theme.of(context).primaryColor;
+    final Color color = toastStyle.progressBarColor ?? primaryColor;
     double height = toastSetting.progressBarHeight;
     height = height.clamp(2, 8);
 

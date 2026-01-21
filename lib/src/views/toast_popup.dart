@@ -5,6 +5,19 @@ import '../widgets/toast_container_widget.dart';
 import '../widgets/toast_position_widget.dart';
 
 class ToastPopup extends StatefulWidget {
+  /// A sliding message to show the toast
+  const ToastPopup({
+    super.key,
+    required this.toastController,
+    required this.leading,
+    required this.title,
+    required this.trailing,
+    required this.toastSetting,
+    required this.toastStyle,
+    this.onDisposed,
+    this.onTapped,
+  });
+
   /// The toast controller for removing the overlay
   final ToastController toastController;
 
@@ -25,23 +38,10 @@ class ToastPopup extends StatefulWidget {
   final ToastStyle toastStyle;
 
   /// Function to be called when the toast is disposed
-  final Function()? onDisposed;
+  final void Function()? onDisposed;
 
   /// Function to be called when the toast is clicked
-  final Function()? onTapped;
-
-  /// A sliding message to show the toast
-  const ToastPopup({
-    super.key,
-    required this.toastController,
-    required this.leading,
-    required this.title,
-    required this.trailing,
-    required this.toastSetting,
-    required this.toastStyle,
-    this.onDisposed,
-    this.onTapped,
-  });
+  final void Function()? onTapped;
 
   @override
   State<ToastPopup> createState() => _ToastPopupState();
@@ -83,7 +83,9 @@ class _ToastPopupState extends State<ToastPopup> with TickerProviderStateMixin {
 
     /// For tracking the animation and display duration
     Duration duration = toastSetting.displayDuration;
-    if (showAnimation) duration += toastSetting.animationDuration;
+    if (showAnimation) {
+      duration += toastSetting.animationDuration;
+    }
     timeController = AnimationController(vsync: this, duration: duration);
 
     // Create a curved tween animation for the slide
@@ -105,18 +107,17 @@ class _ToastPopupState extends State<ToastPopup> with TickerProviderStateMixin {
     // Start the size animation
     scaleController.forward();
 
-    // Start the time controller
-    timeController.forward();
-
-    // listen animation is completed or not to remove the overlay
-    timeController.addStatusListener(animationListener);
+    // Start the time controller and listen animation is completed or not to remove the overlay
+    timeController
+      ..forward()
+      ..addStatusListener(animationListener);
   }
 
-  animationListener(status) async {
+  Future<void> animationListener(AnimationStatus status) async {
     if (status == AnimationStatus.completed) {
       // Wait for the reverse animation to complete
       if (showAnimation && toastSetting.showReverseAnimation) {
-        fadeController.reverse();
+        await fadeController.reverse();
         await scaleController.reverse();
       }
 
@@ -170,17 +171,22 @@ class _ToastPopupState extends State<ToastPopup> with TickerProviderStateMixin {
       newMaxWidth: toastSetting.maxWidth,
       child: Dismissible(
         key: UniqueKey(),
-        direction: DismissDirection.horizontal,
         // Stop animations and remove the overlay on dismissed
         onDismissed: (_) {
-          if (showAnimation) timeController.stop();
+          if (showAnimation) {
+            timeController.stop();
+          }
           widget.toastController.closeToast();
         },
         child: GestureDetector(
           // Execute onTapped function on tap
           onTap: () {
-            if (!isToastTapped) widget.onTapped?.call();
-            if (widget.toastSetting.disableMultiTapping) isToastTapped = true;
+            if (!isToastTapped) {
+              widget.onTapped?.call();
+            }
+            if (widget.toastSetting.disableMultiTapping) {
+              isToastTapped = true;
+            }
           },
           // Pause the animation on long press
           onLongPress: () => timeController.stop(),

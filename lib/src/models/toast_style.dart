@@ -3,6 +3,31 @@ import 'package:flutter/material.dart';
 /// A style for the toast container.
 @immutable
 class ToastStyle {
+  const ToastStyle({
+    this.padding,
+    this.titleLeadingGap = 5,
+    this.titleTrailingGap = 5,
+    this.backgroundColor = Colors.white,
+    this.gradient,
+    this.image,
+    this.glassBlur,
+    this.backgroundColorOpacity,
+    this.boxShadow = const [
+      BoxShadow(
+        // First two hexadecimal digits in the color refer to the opacity
+        color: Color(0x10000000),
+        blurRadius: 5,
+        spreadRadius: 3,
+        offset: Offset(2, 2),
+      ),
+    ],
+    this.borderRadius = const BorderRadius.all(Radius.circular(8)),
+    this.border,
+    this.progressBarColor,
+    this.expandedTitle = true,
+    this.widgetCrossAxisAlignment = CrossAxisAlignment.center,
+  });
+
   /// Padding inside the toast
   final EdgeInsets? padding;
 
@@ -43,7 +68,7 @@ class ToastStyle {
   final BorderRadius borderRadius;
 
   /// The border of the toast.
-  /// Default is [null]
+  /// Default is null
   final Border? border;
 
   /// The color of the progress bar.
@@ -51,38 +76,13 @@ class ToastStyle {
   final Color? progressBarColor;
 
   /// The width of the title widget expanding to the available width.
-  /// Default is [true]
+  /// Default is true
   /// * If progress bar is enabled, then title will be always expanded
   final bool expandedTitle;
 
   /// The cross axis alignment of the leading, title, and trailing
   /// which are aligned in a row.
   final CrossAxisAlignment widgetCrossAxisAlignment;
-
-  const ToastStyle({
-    this.padding,
-    this.titleLeadingGap = 5,
-    this.titleTrailingGap = 5,
-    this.backgroundColor = Colors.white,
-    this.gradient,
-    this.image,
-    this.glassBlur,
-    this.backgroundColorOpacity,
-    this.boxShadow = const [
-      BoxShadow(
-        // First two hexadecimal digits in the color refer to the opacity
-        color: Color(0x10000000),
-        blurRadius: 5,
-        spreadRadius: 3,
-        offset: Offset(2, 2),
-      ),
-    ],
-    this.borderRadius = const BorderRadius.all(Radius.circular(8)),
-    this.border,
-    this.progressBarColor,
-    this.expandedTitle = true,
-    this.widgetCrossAxisAlignment = CrossAxisAlignment.center,
-  });
 
   ToastStyle copyWith({
     EdgeInsets? padding,

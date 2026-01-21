@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 
 class ToastPositionWidget extends StatelessWidget {
-  final Alignment alignment;
-  final EdgeInsets padding;
-  final double? newMaxWidth;
-  final double? newMaxHeight;
-  final Widget child;
-
   /// A widget to position the toast in the screen
   /// with the given toast start position and alignment
   const ToastPositionWidget({
@@ -17,19 +11,28 @@ class ToastPositionWidget extends StatelessWidget {
     required this.padding,
     required this.child,
   });
+  final Alignment alignment;
+  final EdgeInsets padding;
+  final double? newMaxWidth;
+  final double? newMaxHeight;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
     // Defining the constraints for the toast
     final size = MediaQuery.of(context).size;
 
-    double minHeight = 20;
-    double minWidth = size.width * .2;
+    const double minHeight = 20;
+    final double minWidth = size.width * .2;
     double maxHeight = size.height * .4;
     double maxWidth = size.width * 0.8;
 
-    if ((newMaxHeight ?? 0) > minHeight) maxHeight = newMaxHeight!;
-    if ((newMaxWidth ?? 0) > minWidth) maxWidth = newMaxWidth!;
+    if ((newMaxHeight ?? 0) > minHeight) {
+      maxHeight = newMaxHeight!;
+    }
+    if ((newMaxWidth ?? 0) > minWidth) {
+      maxWidth = newMaxWidth!;
+    }
 
     // SafeArea is used to avoid the status bar and the bottom navigation bar of the device
     return SafeArea(

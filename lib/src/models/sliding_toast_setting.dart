@@ -5,6 +5,21 @@ import '../enums/toast_position.dart';
 /// The setting for the sliding animation
 @immutable
 class SlidingToastSetting {
+  const SlidingToastSetting({
+    this.maxWidth,
+    this.maxHeight,
+    this.curve = Curves.elasticOut,
+    this.animationDuration = const Duration(seconds: 1),
+    this.displayDuration = const Duration(seconds: 1),
+    this.showReverseAnimation = true,
+    this.showProgressBar = true,
+    this.progressBarHeight = 3,
+    this.disableMultiTapping = false,
+    this.toastStartPosition = ToastPosition.bottom,
+    this.toastAlignment = Alignment.bottomCenter,
+    this.padding = const EdgeInsets.all(10),
+  });
+
   /// The maximum width of the toast
   /// Default is [80% of the screen width]
   final double? maxWidth;
@@ -27,7 +42,7 @@ class SlidingToastSetting {
   final Duration displayDuration;
 
   /// Whether to show the reverse animation or not to dismiss the toast.
-  /// Default is [true]
+  /// Default is true
   final bool showReverseAnimation;
 
   /// The height of the progress bar.
@@ -36,7 +51,7 @@ class SlidingToastSetting {
   final double progressBarHeight;
 
   /// Whether to show the progress bar or not.
-  /// Default is [true]
+  /// Default is true
   final bool showProgressBar;
 
   /// Disable Multiple tap on the toast
@@ -59,21 +74,6 @@ class SlidingToastSetting {
   /// Provide this according to the toast start position and alignment.
   /// Default is [EdgeInsets.all(10)]
   final EdgeInsets padding;
-
-  const SlidingToastSetting({
-    this.maxWidth,
-    this.maxHeight,
-    this.curve = Curves.elasticOut,
-    this.animationDuration = const Duration(seconds: 1),
-    this.displayDuration = const Duration(seconds: 1),
-    this.showReverseAnimation = true,
-    this.showProgressBar = true,
-    this.progressBarHeight = 3,
-    this.disableMultiTapping = false,
-    this.toastStartPosition = ToastPosition.bottom,
-    this.toastAlignment = Alignment.bottomCenter,
-    this.padding = const EdgeInsets.all(10),
-  });
 
   SlidingToastSetting copyWith({
     double? maxWidth,

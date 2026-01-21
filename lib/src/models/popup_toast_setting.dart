@@ -5,6 +5,21 @@ import '../enums/toast_position.dart';
 /// The setting for the sliding animation
 @immutable
 class PopupToastSetting {
+  const PopupToastSetting({
+    this.maxWidth,
+    this.maxHeight,
+    this.showFading = true,
+    this.showScaling = true,
+    this.fadingCurve = Curves.easeOut,
+    this.scalingCurve = Curves.elasticOut,
+    this.animationDuration = const Duration(microseconds: 500),
+    this.displayDuration = const Duration(seconds: 1),
+    this.showReverseAnimation = true,
+    this.disableMultiTapping = false,
+    this.toastAlignment = Alignment.bottomCenter,
+    this.padding = const EdgeInsets.all(10),
+  });
+
   /// The maximum width of the toast
   /// Default is [80% of the screen width]
   final double? maxWidth;
@@ -39,7 +54,7 @@ class PopupToastSetting {
   final Duration displayDuration;
 
   /// Whether to show the reverse animation or not to dismiss the toast.
-  /// Default is [true]
+  /// Default is true
   final bool showReverseAnimation;
 
   /// Disable Multiple tap on the toast
@@ -58,21 +73,6 @@ class PopupToastSetting {
   /// Provide this according to the toast start position and alignment.
   /// Default is [EdgeInsets.all(10)]
   final EdgeInsets padding;
-
-  const PopupToastSetting({
-    this.maxWidth,
-    this.maxHeight,
-    this.showFading = true,
-    this.showScaling = true,
-    this.fadingCurve = Curves.easeOut,
-    this.scalingCurve = Curves.elasticOut,
-    this.animationDuration = const Duration(microseconds: 500),
-    this.displayDuration = const Duration(seconds: 1),
-    this.showReverseAnimation = true,
-    this.disableMultiTapping = false,
-    this.toastAlignment = Alignment.bottomCenter,
-    this.padding = const EdgeInsets.all(10),
-  });
 
   PopupToastSetting copyWith({
     double? maxWidth,

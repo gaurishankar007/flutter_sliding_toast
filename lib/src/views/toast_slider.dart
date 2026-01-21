@@ -6,6 +6,19 @@ import '../widgets/toast_position_widget.dart';
 import '../widgets/toast_progress_bar_widget.dart';
 
 class ToastSlider extends StatefulWidget {
+  /// A sliding message to show the toast
+  const ToastSlider({
+    super.key,
+    required this.toastController,
+    required this.leading,
+    required this.title,
+    required this.trailing,
+    required this.toastSetting,
+    required this.toastStyle,
+    this.onDisposed,
+    this.onTapped,
+  });
+
   /// The toast controller for removing the overlay
   final ToastController toastController;
 
@@ -26,23 +39,10 @@ class ToastSlider extends StatefulWidget {
   final ToastStyle toastStyle;
 
   /// Function to be called when the toast is disposed
-  final Function()? onDisposed;
+  final void Function()? onDisposed;
 
   /// Function to be called when the toast is clicked
-  final Function()? onTapped;
-
-  /// A sliding message to show the toast
-  const ToastSlider({
-    super.key,
-    required this.toastController,
-    required this.leading,
-    required this.title,
-    required this.trailing,
-    required this.toastSetting,
-    required this.toastStyle,
-    this.onDisposed,
-    this.onTapped,
-  });
+  final void Function()? onTapped;
 
   @override
   State<ToastSlider> createState() => _ToastSliderState();
@@ -92,17 +92,18 @@ class _ToastSliderState extends State<ToastSlider>
     // Start the animation
     slideController.forward();
 
-    // Start the size animation
-    sizeController.forward();
-
-    // listen animation is completed or not to remove the overlay
-    sizeController.addStatusListener(animationListener);
+    // Start the size animation and listen animation is completed or not to remove the overlay
+    sizeController
+      ..forward()
+      ..addStatusListener(animationListener);
   }
 
-  animationListener(AnimationStatus status) async {
+  Future<void> animationListener(AnimationStatus status) async {
     if (status == AnimationStatus.completed) {
       // Wait for the reverse animation to complete
-      if (toastSetting.showReverseAnimation) await slideController.reverse();
+      if (toastSetting.showReverseAnimation) {
+        await slideController.reverse();
+      }
 
       // Remove the overlay entry
       widget.toastController.closeToast();
@@ -170,8 +171,12 @@ class _ToastSliderState extends State<ToastSlider>
         child: GestureDetector(
           // Execute onTapped function on tap
           onTap: () {
-            if (!isToastTapped) widget.onTapped?.call();
-            if (widget.toastSetting.disableMultiTapping) isToastTapped = true;
+            if (!isToastTapped) {
+              widget.onTapped?.call();
+            }
+            if (widget.toastSetting.disableMultiTapping) {
+              isToastTapped = true;
+            }
           },
           // Pause the animation on long press
           onLongPress: () => sizeController.stop(),
