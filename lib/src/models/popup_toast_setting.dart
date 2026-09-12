@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-import '../enums/toast_position.dart';
+import 'package:flutter_sliding_toast/src/enums/toast_position.dart';
 
 /// The setting for the sliding animation
 @immutable
@@ -12,7 +12,7 @@ class PopupToastSetting {
     this.showScaling = true,
     this.fadingCurve = Curves.easeOut,
     this.scalingCurve = Curves.elasticOut,
-    this.animationDuration = const Duration(microseconds: 500),
+    this.animationDuration = const Duration(milliseconds: 500),
     this.displayDuration = const Duration(seconds: 1),
     this.showReverseAnimation = true,
     this.disableMultiTapping = false,

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ToastPositionWidget extends StatelessWidget {
   /// A widget to position the toast in the screen
@@ -20,7 +20,7 @@ class ToastPositionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Defining the constraints for the toast
-    final size = MediaQuery.of(context).size;
+    final size = MediaQuery.sizeOf(context);
 
     const double minHeight = 20;
     final double minWidth = size.width * .2;

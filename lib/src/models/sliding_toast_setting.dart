@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-import '../enums/toast_position.dart';
+import 'package:flutter_sliding_toast/src/enums/toast_position.dart';
 
 /// The setting for the sliding animation
 @immutable

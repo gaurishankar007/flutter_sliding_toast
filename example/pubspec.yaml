@@ -13,9 +13,10 @@ dependencies:
     sdk: flutter
   flutter_sliding_toast:
     path: ..
+  material_ui: ^1.2.0
 
 dev_dependencies:
-  leancode_lint: ^19.0.1
+  leancode_lint: ^27.0.0
 
 flutter:
   uses-material-design: true

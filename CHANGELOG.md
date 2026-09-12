@@ -1,3 +1,11 @@
+## 1.6.0
+
+- Migrated from `package:flutter/material.dart` to the standalone `material_ui` package (Material and Cupertino were split out of the Flutter SDK in Flutter 3.47). Only the files that actually need `Theme`/`Material`/`Colors`/`Icons` now depend on `material_ui`; everything else uses `package:flutter/widgets.dart`. Requires Flutter 3.47 or newer.
+- Fixed a bug where a toast with `glassBlur` set was always fully transparent, since `backgroundColorOpacity` was multiplied by `.255` instead of `255` when computing the background alpha.
+- Fixed `PopupToastSetting`'s default `animationDuration`, which was `Duration(microseconds: 500)` instead of `Duration(milliseconds: 500)`, making the fade/scale-in animation imperceptible.
+- Fixed `slideError`/`popError`'s `disableMultiTapping` parameter, which was previously accepted but never applied.
+- Added test coverage for the settings/style models, the toast widgets, and `InteractiveToast`.
+
 ## 1.5.3
 
 - Bumped Dart SDK version and updated the lint rules.

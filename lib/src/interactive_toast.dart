@@ -1,11 +1,10 @@
 import 'dart:collection' show Queue;
 
-import 'package:flutter/material.dart';
-
-import '../flutter_sliding_toast.dart';
-import 'core/unique_string_generator.dart';
-import 'views/toast_popup.dart';
-import 'views/toast_slider.dart';
+import 'package:flutter_sliding_toast/flutter_sliding_toast.dart';
+import 'package:flutter_sliding_toast/src/core/unique_string_generator.dart';
+import 'package:flutter_sliding_toast/src/views/toast_popup.dart';
+import 'package:flutter_sliding_toast/src/views/toast_slider.dart';
+import 'package:material_ui/material_ui.dart';
 
 class InteractiveToast {
   const InteractiveToast._();
@@ -21,44 +20,38 @@ class InteractiveToast {
   static void initializeOverlayState(OverlayState overlayState) =>
       _overlayState = overlayState;
 
-  /// If [overlayState] is provided, then [context] will not be used.
-  static ToastController slide({
-    BuildContext? context,
-    OverlayState? overlayState,
-    Widget? leading,
-    required Widget title,
-    Widget? trailing,
-    SlidingToastSetting toastSetting = const SlidingToastSetting(),
-    ToastStyle toastStyle = const ToastStyle(),
-    void Function()? onDisposed,
-    void Function()? onTapped,
+  /// Inserts the overlay entry built by [builder], wires it to a
+  /// [ToastController], and registers that controller so [closeAllToast]
+  /// can reach it later. Shared by [slide] and [pop].
+  static ToastController _show({
+    required BuildContext? context,
+    required OverlayState? overlayState,
+    required Widget Function(ToastController toastController) builder,
+    required void Function()? onDisposed,
   }) {
     /// Updating global values if they are configured before
-    context ??= _context;
-    overlayState ??= _overlayState;
+    final resolvedContext = context ?? _context;
+
+    /// A stale/disposed overlay state cannot host a new entry,
+    /// fall back to the context in that case.
+    final providedOverlayState = overlayState ?? _overlayState;
+    final resolvedOverlayState = providedOverlayState?.mounted == true
+        ? providedOverlayState
+        : null;
 
     /// Don't show the toast if both overlay and mounted context are not provided
-    if (context?.mounted != true && overlayState == null) {
+    if (resolvedContext?.mounted != true && resolvedOverlayState == null) {
       return ToastController.empty();
     }
 
-    late final OverlayState newOverlayState;
     late final ToastController toastController;
 
     /// Overlay and overlay entry and passing toast controller to dispose
     /// the overlay whenever the animation is finished
-    newOverlayState = overlayState ?? Overlay.of(context!);
+    final newOverlayState =
+        resolvedOverlayState ?? Overlay.of(resolvedContext!);
     final overlayEntry = OverlayEntry(
-      builder: (context) => ToastSlider(
-        toastController: toastController,
-        leading: leading,
-        title: title,
-        trailing: trailing,
-        toastSetting: toastSetting,
-        toastStyle: toastStyle,
-        onDisposed: onDisposed,
-        onTapped: onTapped,
-      ),
+      builder: (context) => builder(toastController),
     );
     newOverlayState.insert(overlayEntry);
 
@@ -83,6 +76,34 @@ class InteractiveToast {
     _toastControllers.add(toastController);
 
     return toastController;
+  }
+
+  /// If [overlayState] is provided, then [context] will not be used.
+  static ToastController slide({
+    BuildContext? context,
+    OverlayState? overlayState,
+    Widget? leading,
+    required Widget title,
+    Widget? trailing,
+    SlidingToastSetting toastSetting = const SlidingToastSetting(),
+    ToastStyle toastStyle = const ToastStyle(),
+    void Function()? onDisposed,
+    void Function()? onTapped,
+  }) {
+    return _show(
+      context: context,
+      overlayState: overlayState,
+      onDisposed: onDisposed,
+      builder: (toastController) => ToastSlider(
+        toastController: toastController,
+        leading: leading,
+        title: title,
+        trailing: trailing,
+        toastSetting: toastSetting,
+        toastStyle: toastStyle,
+        onTapped: onTapped,
+      ),
+    );
   }
 
   /// If [overlayState] is provided, then [context] will not be used.
@@ -97,56 +118,20 @@ class InteractiveToast {
     void Function()? onDisposed,
     void Function()? onTapped,
   }) {
-    /// Updating global values if they are configured before
-    context ??= _context;
-    overlayState ??= _overlayState;
-
-    /// Don't show the toast if both overlay and mounted context are not provided
-    if (context?.mounted != true && overlayState == null) {
-      return ToastController.empty();
-    }
-
-    late final OverlayState newOverlayState;
-    late final ToastController toastController;
-
-    /// Overlay and overlay entry and passing toast controller to dispose
-    /// the overlay whenever the animation is finished
-    newOverlayState = overlayState ?? Overlay.of(context!);
-    final overlayEntry = OverlayEntry(
-      builder: (context) => ToastPopup(
+    return _show(
+      context: context,
+      overlayState: overlayState,
+      onDisposed: onDisposed,
+      builder: (toastController) => ToastPopup(
         toastController: toastController,
         leading: leading,
         title: title,
         trailing: trailing,
         toastSetting: toastSetting,
         toastStyle: toastStyle,
-        onDisposed: onDisposed,
         onTapped: onTapped,
       ),
     );
-    newOverlayState.insert(overlayEntry);
-
-    /// Inserting toast controller to a list
-    final String toastId = getUniqueString();
-    toastController = ToastController(
-      id: toastId,
-      closeToast: () {
-        if (overlayEntry.mounted) {
-          overlayEntry
-            ..remove()
-            ..dispose();
-          onDisposed?.call();
-        }
-
-        /// Removing toast from the list
-        _toastControllers.removeWhere((e) => e.id == toastId);
-      },
-    );
-
-    /// Adding toast to the list
-    _toastControllers.add(toastController);
-
-    return toastController;
   }
 
   /// Close all the toasts one by one
@@ -154,6 +139,31 @@ class InteractiveToast {
     while (_toastControllers.isNotEmpty) {
       _toastControllers.removeFirst().closeToast();
     }
+  }
+
+  /// A fixed trailing icon for the deprecated status toasts below.
+  static Widget _statusIcon(IconData icon, Color color, double? size) {
+    return Icon(icon, color: color, size: size);
+  }
+
+  /// A fixed box shadow and progress bar color for the deprecated
+  /// status toasts below.
+  static ToastStyle _statusStyle(
+    ToastStyle toastStyle,
+    Color color,
+    double shadowOpacity,
+  ) {
+    return toastStyle.copyWith(
+      boxShadow: [
+        BoxShadow(
+          color: color.withValues(alpha: shadowOpacity),
+          blurRadius: 5,
+          spreadRadius: 3,
+          offset: const Offset(2, 2),
+        ),
+      ],
+      progressBarColor: color,
+    );
   }
 
   /// Default toast for showing success message
@@ -176,23 +186,13 @@ class InteractiveToast {
       context: context,
       overlayState: overlayState,
       title: title,
-      trailing: Icon(
+      trailing: _statusIcon(
         Icons.check_circle_rounded,
-        color: Colors.green,
-        size: checkIconSize,
+        Colors.green,
+        checkIconSize,
       ),
       toastSetting: toastSetting,
-      toastStyle: toastStyle.copyWith(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.green.withOpacity(.15),
-            blurRadius: 5,
-            spreadRadius: 3,
-            offset: const Offset(2, 2),
-          ),
-        ],
-        progressBarColor: Colors.green,
-      ),
+      toastStyle: _statusStyle(toastStyle, Colors.green, .15),
       onDisposed: onDisposed,
       onTapped: onTapped,
     );
@@ -219,23 +219,11 @@ class InteractiveToast {
       context: context,
       overlayState: overlayState,
       title: title,
-      trailing: Icon(
-        Icons.warning_rounded,
-        color: Colors.red,
-        size: checkIconSize,
+      trailing: _statusIcon(Icons.warning_rounded, Colors.red, checkIconSize),
+      toastSetting: toastSetting.copyWith(
+        disableMultiTapping: disableMultiTapping,
       ),
-      toastSetting: toastSetting,
-      toastStyle: toastStyle.copyWith(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.red.withOpacity(.1),
-            blurRadius: 5,
-            spreadRadius: 3,
-            offset: const Offset(2, 2),
-          ),
-        ],
-        progressBarColor: Colors.red,
-      ),
+      toastStyle: _statusStyle(toastStyle, Colors.red, .1),
       onDisposed: onDisposed,
       onTapped: onTapped,
     );
@@ -260,23 +248,13 @@ class InteractiveToast {
       context: context,
       overlayState: overlayState,
       title: title,
-      trailing: Icon(
+      trailing: _statusIcon(
         Icons.check_circle_rounded,
-        color: Colors.green,
-        size: checkIconSize,
+        Colors.green,
+        checkIconSize,
       ),
       toastSetting: toastSetting,
-      toastStyle: toastStyle.copyWith(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.green.withOpacity(.15),
-            blurRadius: 5,
-            spreadRadius: 3,
-            offset: const Offset(2, 2),
-          ),
-        ],
-        progressBarColor: Colors.green,
-      ),
+      toastStyle: _statusStyle(toastStyle, Colors.green, .15),
       onDisposed: onDisposed,
       onTapped: onTapped,
     );
@@ -302,23 +280,11 @@ class InteractiveToast {
       context: context,
       overlayState: overlayState,
       title: title,
-      trailing: Icon(
-        Icons.warning_rounded,
-        color: Colors.red,
-        size: checkIconSize,
+      trailing: _statusIcon(Icons.warning_rounded, Colors.red, checkIconSize),
+      toastSetting: toastSetting.copyWith(
+        disableMultiTapping: disableMultiTapping,
       ),
-      toastSetting: toastSetting,
-      toastStyle: toastStyle.copyWith(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.red.withOpacity(.1),
-            blurRadius: 5,
-            spreadRadius: 3,
-            offset: const Offset(2, 2),
-          ),
-        ],
-        progressBarColor: Colors.red,
-      ),
+      toastStyle: _statusStyle(toastStyle, Colors.red, .1),
       onDisposed: onDisposed,
       onTapped: onTapped,
     );

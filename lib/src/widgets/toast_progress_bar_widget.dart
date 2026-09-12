@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
-import '../models/sliding_toast_setting.dart';
-import '../models/toast_style.dart';
+import 'package:flutter_sliding_toast/src/models/sliding_toast_setting.dart';
+import 'package:flutter_sliding_toast/src/models/toast_style.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ToastProgressBarWidget extends StatelessWidget {
   /// A progress bar to show the remaining time left to dismiss the toast
@@ -29,7 +28,7 @@ class ToastProgressBarWidget extends StatelessWidget {
       child: SizeTransition(
         sizeFactor: animation,
         axis: Axis.horizontal,
-        axisAlignment: -1,
+        alignment: Alignment.centerLeft,
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(

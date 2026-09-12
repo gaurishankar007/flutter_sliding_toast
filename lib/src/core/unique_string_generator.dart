@@ -1,9 +1,4 @@
-import 'dart:math';
+int _counter = 0;
 
-String getUniqueString() {
-  final random = Random();
-  final randomNumber = random.nextInt(10000000).toString();
-  final timeStamp = DateTime.now().toIso8601String();
-
-  return '$randomNumber$timeStamp';
-}
+/// A unique id for each toast within this isolate's lifetime.
+String getUniqueString() => (_counter++).toString();

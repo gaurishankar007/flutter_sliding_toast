@@ -41,11 +41,13 @@ Enhance your app's UI with customizable, interactive toasts! This package offers
 
 ## ⚙️ Getting Started
 
+Requires Flutter 3.47.0 or newer.
+
 Add the following line to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_sliding_toast: ^1.5.3
+  flutter_sliding_toast: ^1.6.0
 ```
 
 ## 🚀 Usage

@@ -1,8 +1,8 @@
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-import '../models/toast_style.dart';
+import 'package:flutter_sliding_toast/src/models/toast_style.dart';
 
 class ToastContainerWidget extends StatelessWidget {
   /// A container to display a toast message
@@ -38,7 +38,7 @@ class ToastContainerWidget extends StatelessWidget {
     /// Adding transparency in background color for glassy effect
     if (toastStyle.glassBlur != null) {
       backgroundColor = backgroundColor.withAlpha(
-        ((toastStyle.backgroundColorOpacity ?? .8) * .255).toInt(),
+        ((toastStyle.backgroundColorOpacity ?? .8) * 255).toInt(),
       );
     }
 
@@ -64,7 +64,6 @@ class ToastContainerWidget extends StatelessWidget {
     );
 
     child = Container(
-      constraints: const BoxConstraints(),
       padding: toastStyle.padding ?? const EdgeInsets.all(15),
       decoration: BoxDecoration(
         color: backgroundColor,

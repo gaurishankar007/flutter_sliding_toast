@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 /// The toast will start sliding from this direction
 enum ToastPosition {

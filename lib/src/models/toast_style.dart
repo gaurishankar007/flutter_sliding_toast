@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 /// A style for the toast container.
 @immutable
@@ -7,7 +7,7 @@ class ToastStyle {
     this.padding,
     this.titleLeadingGap = 5,
     this.titleTrailingGap = 5,
-    this.backgroundColor = Colors.white,
+    this.backgroundColor = const Color(0xFFFFFFFF),
     this.gradient,
     this.image,
     this.glassBlur,
@@ -40,7 +40,7 @@ class ToastStyle {
   final double titleTrailingGap;
 
   /// The background color of the toast.
-  /// Default is [Colors.white]
+  /// Default is white
   final Color backgroundColor;
 
   /// The gradient color of the toast.

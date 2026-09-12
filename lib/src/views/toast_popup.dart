@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-import '../../flutter_sliding_toast.dart';
-import '../widgets/toast_container_widget.dart';
-import '../widgets/toast_position_widget.dart';
+import 'package:flutter_sliding_toast/flutter_sliding_toast.dart';
+import 'package:flutter_sliding_toast/src/widgets/toast_container_widget.dart';
+import 'package:flutter_sliding_toast/src/widgets/toast_position_widget.dart';
 
 class ToastPopup extends StatefulWidget {
   /// A sliding message to show the toast
@@ -14,7 +14,6 @@ class ToastPopup extends StatefulWidget {
     required this.trailing,
     required this.toastSetting,
     required this.toastStyle,
-    this.onDisposed,
     this.onTapped,
   });
 
@@ -36,9 +35,6 @@ class ToastPopup extends StatefulWidget {
 
   /// The style of the toast
   final ToastStyle toastStyle;
-
-  /// Function to be called when the toast is disposed
-  final void Function()? onDisposed;
 
   /// Function to be called when the toast is clicked
   final void Function()? onTapped;
