@@ -1,3 +1,10 @@
+## 1.7.0
+
+- Added `ToastDisplayMode` to show toasts all at once (`allAtOnce`, the default and the previous behavior) or one by one (`oneByOne`), where a new toast waits in a queue until the one on screen is closed. Set it for every toast with `InteractiveToast.setDisplayMode`, or per toast with the `displayMode` parameter of `slide`/`pop`.
+- Added `showDialogOnTap` to `SlidingToastSetting` and `PopupToastSetting` to show the whole toast content in a dialog styled like the toast when it's tapped, scrollable if the message is long. The toast is paused while the dialog is open. Customize the dialog with `dialogSetting` (`ToastDialogSetting`), and pass `dialogTitle` to `slide`/`pop` to show a different (e.g. untruncated) title in the dialog.
+- `closeAllToast` also drops the toasts waiting in the queue.
+- Fixed `closeToast` leaving the toast on screen when called before its first frame was built.
+
 ## 1.6.0
 
 - Migrated from `package:flutter/material.dart` to the standalone `material_ui` package (Material and Cupertino were split out of the Flutter SDK in Flutter 3.47). Only the files that actually need `Theme`/`Material`/`Colors`/`Icons` now depend on `material_ui`; everything else uses `package:flutter/widgets.dart`. Requires Flutter 3.47 or newer.

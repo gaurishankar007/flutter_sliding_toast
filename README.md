@@ -38,6 +38,8 @@ Enhance your app's UI with customizable, interactive toasts! This package offers
 - Execute a function after the toast is tapped or disposed
 - Disable Multiple tapping to execute 'onTap' callback only one time
 - Initialize context or overlay state early for persistent toast availability
+- Show toasts all at once or one by one, queueing the ones that arrive while a toast is on screen
+- Tap a toast to read its whole message in a dialog styled like the toast, handy for long messages
 
 ## ⚙️ Getting Started
 
@@ -47,7 +49,7 @@ Add the following line to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_sliding_toast: ^1.6.0
+  flutter_sliding_toast: ^1.7.0
 ```
 
 ## 🚀 Usage
@@ -139,6 +141,43 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
+```
+
+### Showing toasts one by one
+
+By default every toast shows right away, stacking on the ones already on screen. Show them one at a time instead, each waiting for the previous one to close:
+
+```dart
+// For every toast
+InteractiveToast.setDisplayMode(ToastDisplayMode.oneByOne);
+
+// Or only for a single toast
+InteractiveToast.slide(
+  context: context,
+  title: const Text('I wait for my turn'),
+  displayMode: ToastDisplayMode.oneByOne,
+);
+```
+
+`closeAllToast` closes the toast on screen and drops the ones waiting in the queue.
+
+### Showing long messages in a dialog
+
+Set `showDialogOnTap` to show the whole toast content in a dialog styled like the toast when it's tapped. The message scrolls if it's longer than the dialog, and the toast is paused while the dialog is open. Use `dialogTitle` to show the full message in the dialog while the toast keeps it short:
+
+```dart
+InteractiveToast.slide(
+  context: context,
+  title: Text(longMessage, maxLines: 2, overflow: TextOverflow.ellipsis),
+  dialogTitle: Text(longMessage),
+  toastSetting: const SlidingToastSetting(
+    showDialogOnTap: true,
+    dialogSetting: ToastDialogSetting(
+      maxHeight: 300,
+      barrierColor: Color(0xCC000000),
+    ),
+  ),
+);
 ```
 
 ## ❤️ Additional information

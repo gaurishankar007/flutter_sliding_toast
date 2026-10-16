@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import 'package:flutter_sliding_toast/flutter_sliding_toast.dart';
+import 'package:flutter_sliding_toast/src/views/toast_dialog.dart';
 import 'package:flutter_sliding_toast/src/widgets/toast_container_widget.dart';
 import 'package:flutter_sliding_toast/src/widgets/toast_position_widget.dart';
 
@@ -14,6 +15,7 @@ class ToastPopup extends StatefulWidget {
     required this.trailing,
     required this.toastSetting,
     required this.toastStyle,
+    this.dialogTitle,
     this.onTapped,
   });
 
@@ -35,6 +37,9 @@ class ToastPopup extends StatefulWidget {
 
   /// The style of the toast
   final ToastStyle toastStyle;
+
+  /// The message displayed in the dialog shown on tap instead of [title]
+  final Widget? dialogTitle;
 
   /// Function to be called when the toast is clicked
   final void Function()? onTapped;
@@ -122,6 +127,24 @@ class _ToastPopupState extends State<ToastPopup> with TickerProviderStateMixin {
     }
   }
 
+  /// Shows the whole toast content in a dialog,
+  /// pausing the toast until the dialog is closed.
+  Future<void> showDialog() async {
+    timeController.stop();
+    await showToastDialog(
+      context,
+      leading: widget.leading,
+      title: widget.dialogTitle ?? widget.title,
+      trailing: widget.trailing,
+      toastStyle: toastStyle,
+      dialogSetting: toastSetting.dialogSetting,
+      toastMaxWidth: toastSetting.maxWidth,
+    );
+    if (mounted) {
+      timeController.forward();
+    }
+  }
+
   @override
   void dispose() {
     fadeController.dispose();
@@ -177,11 +200,15 @@ class _ToastPopupState extends State<ToastPopup> with TickerProviderStateMixin {
         child: GestureDetector(
           // Execute onTapped function on tap
           onTap: () {
-            if (!isToastTapped) {
-              widget.onTapped?.call();
+            if (isToastTapped) {
+              return;
             }
-            if (widget.toastSetting.disableMultiTapping) {
+            if (toastSetting.disableMultiTapping) {
               isToastTapped = true;
+            }
+            widget.onTapped?.call();
+            if (toastSetting.showDialogOnTap) {
+              showDialog();
             }
           },
           // Pause the animation on long press

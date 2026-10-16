@@ -48,6 +48,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool showOneByOne = InteractiveToast.displayMode == ToastDisplayMode.oneByOne;
+
   @override
   void initState() {
     super.initState();
@@ -75,6 +77,33 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(width: double.maxFinite),
+              SwitchListTile(
+                title: _textWidget('Show toasts one by one'),
+                subtitle: const Text(
+                  'Off: every toast shows at once. '
+                  'On: toasts wait in a queue for their turn.',
+                ),
+                value: showOneByOne,
+                onChanged: (value) {
+                  setState(() => showOneByOne = value);
+                  InteractiveToast.setDisplayMode(
+                    value
+                        ? ToastDisplayMode.oneByOne
+                        : ToastDisplayMode.allAtOnce,
+                  );
+                },
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: _showThreeToasts,
+                child: _textWidget('Show three toasts'),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _showLongMessageToast,
+                child: _textWidget('Long message toast, tap to read it all'),
+              ),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   InteractiveToast.slide(
@@ -286,6 +315,67 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  /// Shows three toasts at the same spot, stacking on each other
+  /// or waiting for their turn depending on the display mode.
+  void _showThreeToasts() {
+    const colors = [Colors.deepPurple, Colors.teal, Colors.orange];
+    for (var i = 0; i < colors.length; i++) {
+      InteractiveToast.slide(
+        title: Text(
+          "I'm toast number ${i + 1} 🍞",
+          style: const TextStyle(color: Colors.white),
+        ),
+        leading: const Icon(Icons.notifications, color: Colors.white),
+        toastSetting: const SlidingToastSetting(
+          displayDuration: Duration(milliseconds: 1500),
+          toastStartPosition: ToastPosition.top,
+          toastAlignment: Alignment.topCenter,
+        ),
+        toastStyle: ToastStyle(
+          backgroundColor: colors[i],
+          progressBarColor: Colors.white,
+        ),
+      );
+    }
+  }
+
+  /// Shows a toast with a long message cut short,
+  /// tapping it shows the whole message in a dialog.
+  void _showLongMessageToast() {
+    const message =
+        "Hi there! I'm a toast with a long message 📜. "
+        'A toast only has room for a line or two, so the rest of this '
+        'message is cut short. Tap me to read the whole message in a '
+        'dialog styled just like me. The toast is paused while the dialog '
+        'is open and continues once the dialog is closed. If the message '
+        'is longer than the dialog, it scrolls, so even a really long '
+        'error report or release note can be read in full without leaving '
+        'the screen you are on.';
+    const textStyle = TextStyle(color: Colors.white);
+
+    InteractiveToast.slide(
+      leading: const Icon(Icons.article_rounded, color: Colors.white),
+      title: const Text(
+        message,
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+        style: textStyle,
+      ),
+      dialogTitle: const Text(message, style: textStyle),
+      toastSetting: const SlidingToastSetting(
+        displayDuration: Duration(seconds: 4),
+        showDialogOnTap: true,
+        dialogSetting: ToastDialogSetting(maxHeight: 300),
+      ),
+      toastStyle: const ToastStyle(
+        backgroundColor: Color(0xFF263238),
+        progressBarColor: Colors.amber,
+        titleLeadingGap: 10,
+        widgetCrossAxisAlignment: CrossAxisAlignment.start,
       ),
     );
   }

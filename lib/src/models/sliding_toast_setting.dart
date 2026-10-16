@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import 'package:flutter_sliding_toast/src/enums/toast_position.dart';
+import 'package:flutter_sliding_toast/src/models/toast_dialog_setting.dart';
 
 /// The setting for the sliding animation
 @immutable
@@ -18,6 +19,8 @@ class SlidingToastSetting {
     this.toastStartPosition = ToastPosition.bottom,
     this.toastAlignment = Alignment.bottomCenter,
     this.padding = const EdgeInsets.all(10),
+    this.showDialogOnTap = false,
+    this.dialogSetting = const ToastDialogSetting(),
   });
 
   /// The maximum width of the toast
@@ -75,6 +78,15 @@ class SlidingToastSetting {
   /// Default is [EdgeInsets.all(10)]
   final EdgeInsets padding;
 
+  /// Whether to show the whole toast content in a dialog styled like
+  /// the toast when it's tapped, useful for long messages.
+  /// The toast is paused while the dialog is open.
+  /// Default is false
+  final bool showDialogOnTap;
+
+  /// The setting for the dialog shown when [showDialogOnTap] is true.
+  final ToastDialogSetting dialogSetting;
+
   SlidingToastSetting copyWith({
     double? maxWidth,
     double? maxHeight,
@@ -88,6 +100,8 @@ class SlidingToastSetting {
     ToastPosition? toastStartPosition,
     Alignment? toastAlignment,
     EdgeInsets? padding,
+    bool? showDialogOnTap,
+    ToastDialogSetting? dialogSetting,
   }) {
     return SlidingToastSetting(
       maxWidth: maxWidth ?? this.maxWidth,
@@ -102,6 +116,8 @@ class SlidingToastSetting {
       toastStartPosition: toastStartPosition ?? this.toastStartPosition,
       toastAlignment: toastAlignment ?? this.toastAlignment,
       padding: padding ?? this.padding,
+      showDialogOnTap: showDialogOnTap ?? this.showDialogOnTap,
+      dialogSetting: dialogSetting ?? this.dialogSetting,
     );
   }
 }
