@@ -8,11 +8,10 @@ import 'package:material_ui/material_ui.dart';
 
 /// A toast's overlay entry, held until its turn when toasts
 /// are shown one by one.
-class _ToastEntry {
-  _ToastEntry(this.overlayState, this.overlayEntry);
-
-  final OverlayState overlayState;
-  final OverlayEntry overlayEntry;
+class _ToastEntry(
+  final OverlayState overlayState,
+  final OverlayEntry overlayEntry,
+) {
   bool isInserted = false;
   bool isClosed = false;
 
@@ -22,9 +21,7 @@ class _ToastEntry {
   }
 }
 
-class InteractiveToast {
-  const InteractiveToast._();
-
+class const InteractiveToast._() {
   static final _toastControllers = Queue<ToastController>();
   static BuildContext? _context;
   static OverlayState? _overlayState;

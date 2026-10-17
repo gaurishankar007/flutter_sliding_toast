@@ -3,40 +3,31 @@ import 'package:flutter/widgets.dart';
 /// The setting for the dialog shown when a toast is tapped,
 /// which displays the whole toast content, scrollable if too long.
 @immutable
-class ToastDialogSetting {
-  const ToastDialogSetting({
-    this.maxWidth,
-    this.maxHeight,
-    this.padding = const EdgeInsets.all(16),
-    this.barrierColor = const Color(0xCC000000),
-    this.barrierDismissible = true,
-    this.animationDuration = const Duration(milliseconds: 250),
-  });
-
+class const ToastDialogSetting({
   /// The maximum width of the dialog
   /// Default is the toast's max width, or [80% of the screen width]
-  final double? maxWidth;
+  final double? maxWidth,
 
   /// The maximum height of the dialog
   /// Default is [60% of the screen height]
-  final double? maxHeight;
+  final double? maxHeight,
 
   /// The space between the dialog and the screen edges.
   /// Default is [EdgeInsets.all(16)]
-  final EdgeInsets padding;
+  final EdgeInsets padding = const EdgeInsets.all(16),
 
   /// The color of the barrier behind the dialog.
   /// Default is black with 80% opacity
-  final Color barrierColor;
+  final Color barrierColor = const Color(0xCC000000),
 
   /// Whether tapping the barrier closes the dialog.
   /// Default is true
-  final bool barrierDismissible;
+  final bool barrierDismissible = true,
 
   /// How long the dialog takes to fade and scale in and out.
   /// Default is [Duration(milliseconds: 250)]
-  final Duration animationDuration;
-
+  final Duration animationDuration = const Duration(milliseconds: 250),
+}) {
   ToastDialogSetting copyWith({
     double? maxWidth,
     double? maxHeight,

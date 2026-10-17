@@ -1,13 +1,11 @@
 import 'package:flutter/widgets.dart';
 
 @immutable
-class ToastController {
-  const ToastController({required this.id, required this.closeToast});
-
-  factory ToastController.empty() => ToastController(id: '', closeToast: () {});
-
-  final String id;
-  final VoidCallback closeToast;
+class const ToastController({
+  required final String id,
+  required final VoidCallback closeToast,
+}) {
+  factory empty() => ToastController(id: '', closeToast: () {});
 
   @override
   String toString() => 'ToastController(id: $id, closeToast: $closeToast)';

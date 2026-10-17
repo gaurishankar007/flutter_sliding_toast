@@ -5,65 +5,48 @@ import 'package:flutter_sliding_toast/src/models/toast_dialog_setting.dart';
 
 /// The setting for the sliding animation
 @immutable
-class SlidingToastSetting {
-  const SlidingToastSetting({
-    this.maxWidth,
-    this.maxHeight,
-    this.curve = Curves.elasticOut,
-    this.animationDuration = const Duration(seconds: 1),
-    this.displayDuration = const Duration(seconds: 1),
-    this.showReverseAnimation = true,
-    this.showProgressBar = true,
-    this.progressBarHeight = 3,
-    this.disableMultiTapping = false,
-    this.toastStartPosition = ToastPosition.bottom,
-    this.toastAlignment = Alignment.bottomCenter,
-    this.padding = const EdgeInsets.all(10),
-    this.showDialogOnTap = false,
-    this.dialogSetting = const ToastDialogSetting(),
-  });
-
+class const SlidingToastSetting({
   /// The maximum width of the toast
   /// Default is [80% of the screen width]
-  final double? maxWidth;
+  final double? maxWidth,
 
   /// The maximum height of the toast
   /// Default is [40% of the screen height]
-  final double? maxHeight;
+  final double? maxHeight,
 
   /// The sliding behavior of the animation.
   /// Default is [Curves.elasticOut]
-  final Curve curve;
+  final Curve curve = Curves.elasticOut,
 
   /// How long the toast will slide.
   /// Default is [Duration(seconds: 1)]
-  final Duration animationDuration;
+  final Duration animationDuration = const Duration(seconds: 1),
 
   /// How long the toast will be displayed
   /// after the completion of the animation.
   /// Default is [Duration(seconds: 1)]
-  final Duration displayDuration;
+  final Duration displayDuration = const Duration(seconds: 1),
 
   /// Whether to show the reverse animation or not to dismiss the toast.
   /// Default is true
-  final bool showReverseAnimation;
+  final bool showReverseAnimation = true,
+
+  /// Whether to show the progress bar or not.
+  /// Default is true
+  final bool showProgressBar = true,
 
   /// The height of the progress bar.
   /// Default is [3]
   /// ProgressBar height constraint is (max: 8, min:2)
-  final double progressBarHeight;
-
-  /// Whether to show the progress bar or not.
-  /// Default is true
-  final bool showProgressBar;
+  final double progressBarHeight = 3,
 
   /// Disable Multiple tap on the toast
   /// Default value is false
-  final bool disableMultiTapping;
+  final bool disableMultiTapping = false,
 
   /// The position of the toast in the screen where it will slide from.
   /// Default is [ToastPosition.bottom]
-  final ToastPosition toastStartPosition;
+  final ToastPosition toastStartPosition = ToastPosition.bottom,
 
   /// The toast alignment in the screen where it will stop.
   /// If the [ToastPosition] is top,
@@ -71,22 +54,22 @@ class SlidingToastSetting {
   /// So that it will slide from top to the top center/left/right.
   /// Otherwise, the slide will not look good.
   /// Default is [Alignment.bottomCenter]
-  final Alignment toastAlignment;
+  final Alignment toastAlignment = Alignment.bottomCenter,
 
   /// The padding around the toast.
   /// Provide this according to the toast start position and alignment.
   /// Default is [EdgeInsets.all(10)]
-  final EdgeInsets padding;
+  final EdgeInsets padding = const EdgeInsets.all(10),
 
   /// Whether to show the whole toast content in a dialog styled like
   /// the toast when it's tapped, useful for long messages.
   /// The toast is paused while the dialog is open.
   /// Default is false
-  final bool showDialogOnTap;
+  final bool showDialogOnTap = false,
 
   /// The setting for the dialog shown when [showDialogOnTap] is true.
-  final ToastDialogSetting dialogSetting;
-
+  final ToastDialogSetting dialogSetting = const ToastDialogSetting(),
+}) {
   SlidingToastSetting copyWith({
     double? maxWidth,
     double? maxHeight,

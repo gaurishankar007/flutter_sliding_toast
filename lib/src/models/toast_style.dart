@@ -2,88 +2,71 @@ import 'package:flutter/widgets.dart';
 
 /// A style for the toast container.
 @immutable
-class ToastStyle {
-  const ToastStyle({
-    this.padding,
-    this.titleLeadingGap = 5,
-    this.titleTrailingGap = 5,
-    this.backgroundColor = const Color(0xFFFFFFFF),
-    this.gradient,
-    this.image,
-    this.glassBlur,
-    this.backgroundColorOpacity,
-    this.boxShadow = const [
-      BoxShadow(
-        // First two hexadecimal digits in the color refer to the opacity
-        color: Color(0x10000000),
-        blurRadius: 5,
-        spreadRadius: 3,
-        offset: Offset(2, 2),
-      ),
-    ],
-    this.borderRadius = const BorderRadius.all(Radius.circular(8)),
-    this.border,
-    this.progressBarColor,
-    this.expandedTitle = true,
-    this.widgetCrossAxisAlignment = CrossAxisAlignment.center,
-  });
-
+class const ToastStyle({
   /// Padding inside the toast
-  final EdgeInsets? padding;
+  final EdgeInsets? padding,
 
   /// Space between title and leading
   /// Applicable only if both available
-  final double titleLeadingGap;
+  final double titleLeadingGap = 5,
 
   /// Space between title and trailing
   /// Applicable only if both available
-  final double titleTrailingGap;
+  final double titleTrailingGap = 5,
 
   /// The background color of the toast.
   /// Default is white
-  final Color backgroundColor;
+  final Color backgroundColor = const Color(0xFFFFFFFF),
 
   /// The gradient color of the toast.
-  final Gradient? gradient;
+  final Gradient? gradient,
 
   /// The background image to be paint above [backgroundColor] or [gradient].
-  final DecorationImage? image;
+  final DecorationImage? image,
 
   /// The amount of blur for glassier effect.
   /// A [backgroundColorOpacity] of 80% is given
   /// only if not given explicitly.
-  final double? glassBlur;
+  final double? glassBlur,
 
   /// The opacity used for background color.
   /// Default [backgroundColorOpacity] is 80%.
-  final double? backgroundColorOpacity;
+  final double? backgroundColorOpacity,
 
   /// The shadow of the toast.
   /// Default is a shadow with 5 blur radius,
   /// 3 spread radius, and 2 offset.
-  final List<BoxShadow>? boxShadow;
+  final List<BoxShadow>? boxShadow = const [
+    BoxShadow(
+      // First two hexadecimal digits in the color refer to the opacity
+      color: Color(0x10000000),
+      blurRadius: 5,
+      spreadRadius: 3,
+      offset: Offset(2, 2),
+    ),
+  ],
 
   /// The border radius of the toast.
   /// Default is [BorderRadius.circular(8)]
-  final BorderRadius borderRadius;
+  final BorderRadius borderRadius = const BorderRadius.all(Radius.circular(8)),
 
   /// The border of the toast.
   /// Default is null
-  final Border? border;
+  final Border? border,
 
   /// The color of the progress bar.
   /// Default is [Theme.of(context).primaryColor]
-  final Color? progressBarColor;
+  final Color? progressBarColor,
 
   /// The width of the title widget expanding to the available width.
   /// Default is true
   /// * If progress bar is enabled, then title will be always expanded
-  final bool expandedTitle;
+  final bool expandedTitle = true,
 
   /// The cross axis alignment of the leading, title, and trailing
   /// which are aligned in a row.
-  final CrossAxisAlignment widgetCrossAxisAlignment;
-
+  final CrossAxisAlignment widgetCrossAxisAlignment = CrossAxisAlignment.center,
+}) {
   ToastStyle copyWith({
     EdgeInsets? padding,
     double? titleLeadingGap,

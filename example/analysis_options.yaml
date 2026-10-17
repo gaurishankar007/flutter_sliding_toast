@@ -3,3 +3,9 @@ analyzer:
     - build/**
     - web/**
 include: package:leancode_lint/analysis_options.yaml
+
+linter:
+  rules:
+    # Flags every constructor-less class and enum (wanting an empty `()`);
+    # constructors are migrated via use_declaring_parameters instead.
+    use_primary_constructors: false

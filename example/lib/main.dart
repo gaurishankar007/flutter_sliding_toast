@@ -5,9 +5,7 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
+class const MyApp({super.key}) extends StatefulWidget {
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -39,10 +37,8 @@ class _MyAppState extends State<MyApp> {
   });
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.changeColor});
-  final VoidCallback changeColor;
-
+class const MyHomePage({super.key, required final VoidCallback changeColor})
+    extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }

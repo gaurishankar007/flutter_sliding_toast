@@ -5,45 +5,35 @@ import 'package:flutter_sliding_toast/src/views/toast_dialog.dart';
 import 'package:flutter_sliding_toast/src/widgets/toast_container_widget.dart';
 import 'package:flutter_sliding_toast/src/widgets/toast_position_widget.dart';
 
-class ToastPopup extends StatefulWidget {
-  /// A sliding message to show the toast
-  const ToastPopup({
-    super.key,
-    required this.toastController,
-    required this.leading,
-    required this.title,
-    required this.trailing,
-    required this.toastSetting,
-    required this.toastStyle,
-    this.dialogTitle,
-    this.onTapped,
-  });
+/// A sliding message to show the toast
+class const ToastPopup({
+  super.key,
 
   /// The toast controller for removing the overlay
-  final ToastController toastController;
+  required final ToastController toastController,
 
   /// The widget to display at the start of the message
-  final Widget? leading;
+  required final Widget? leading,
 
   /// The Message to be displayed at the toast
   /// It's width is expanded whenever leading or trailing widget is present
-  final Widget title;
+  required final Widget title,
 
   /// A widget displayed at the right side of the toast
-  final Widget? trailing;
+  required final Widget? trailing,
 
   /// The setting for the sliding animation
-  final PopupToastSetting toastSetting;
+  required final PopupToastSetting toastSetting,
 
   /// The style of the toast
-  final ToastStyle toastStyle;
+  required final ToastStyle toastStyle,
 
   /// The message displayed in the dialog shown on tap instead of [title]
-  final Widget? dialogTitle;
+  final Widget? dialogTitle,
 
   /// Function to be called when the toast is clicked
-  final void Function()? onTapped;
-
+  final void Function()? onTapped,
+}) extends StatefulWidget {
   @override
   State<ToastPopup> createState() => _ToastPopupState();
 }

@@ -52,36 +52,28 @@ Future<void> showToastDialog(
   );
 }
 
-class ToastDialog extends StatelessWidget {
-  /// A dialog displaying the whole toast content
-  const ToastDialog({
-    super.key,
-    required this.leading,
-    required this.title,
-    required this.trailing,
-    required this.toastStyle,
-    required this.dialogSetting,
-    this.toastMaxWidth,
-  });
+/// A dialog displaying the whole toast content
+class const ToastDialog({
+  super.key,
 
   /// The widget to display at the start of the message
-  final Widget? leading;
+  required final Widget? leading,
 
   /// The message to display, scrollable if it's too long
-  final Widget title;
+  required final Widget title,
 
   /// The widget to display at the end of the message
-  final Widget? trailing;
+  required final Widget? trailing,
 
   /// The style of the toast, reused for the dialog
-  final ToastStyle toastStyle;
+  required final ToastStyle toastStyle,
 
   /// The setting for the dialog
-  final ToastDialogSetting dialogSetting;
+  required final ToastDialogSetting dialogSetting,
 
   /// The toast's max width, used if the dialog's max width isn't given
-  final double? toastMaxWidth;
-
+  final double? toastMaxWidth,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);

@@ -4,33 +4,26 @@ import 'package:flutter/widgets.dart';
 
 import 'package:flutter_sliding_toast/src/models/toast_style.dart';
 
-class ToastContainerWidget extends StatelessWidget {
-  /// A container to display a toast message
-  const ToastContainerWidget({
-    super.key,
-    required this.leading,
-    required this.title,
-    required this.trailing,
-    this.toastStyle = const ToastStyle(),
-    required this.expandTitleWidth,
-  });
+/// A container to display a toast message
+class const ToastContainerWidget({
+  super.key,
 
   /// The widget to display at the start of the message
-  final Widget? leading;
+  required final Widget? leading,
 
   /// The message to display in the toast
   /// It's width is expanded whenever leading or trailing widget is present
-  final Widget title;
+  required final Widget title,
 
   /// The widget to display at the end of the message
-  final Widget? trailing;
+  required final Widget? trailing,
 
   /// Styling of the toast
-  final ToastStyle toastStyle;
+  final ToastStyle toastStyle = const ToastStyle(),
 
   /// Expand the width of the title
-  final bool expandTitleWidth;
-
+  required final bool expandTitleWidth,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color backgroundColor = toastStyle.backgroundColor;

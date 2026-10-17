@@ -1,22 +1,15 @@
 import 'package:material_ui/material_ui.dart';
 
-class ToastPositionWidget extends StatelessWidget {
-  /// A widget to position the toast in the screen
-  /// with the given toast start position and alignment
-  const ToastPositionWidget({
-    super.key,
-    this.newMaxWidth,
-    this.newMaxHeight,
-    required this.alignment,
-    required this.padding,
-    required this.child,
-  });
-  final Alignment alignment;
-  final EdgeInsets padding;
-  final double? newMaxWidth;
-  final double? newMaxHeight;
-  final Widget child;
-
+/// A widget to position the toast in the screen
+/// with the given toast start position and alignment
+class const ToastPositionWidget({
+  super.key,
+  final double? newMaxWidth,
+  final double? newMaxHeight,
+  required final Alignment alignment,
+  required final EdgeInsets padding,
+  required final Widget child,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Defining the constraints for the toast

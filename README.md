@@ -43,7 +43,7 @@ Enhance your app's UI with customizable, interactive toasts! This package offers
 
 ## ⚙️ Getting Started
 
-Requires Flutter 3.47.0 or newer.
+Requires Flutter 3.47.0 and Dart 3.13.0 or newer.
 
 Add the following line to `pubspec.yaml`:
 

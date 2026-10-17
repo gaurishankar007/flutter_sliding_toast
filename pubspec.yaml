@@ -7,7 +7,7 @@ documentation: https://github.com/gaurishankar007/flutter_sliding_toast
 issue_tracker: https://github.com/gaurishankar007/flutter_sliding_toast/issues
 
 environment:
-  sdk: ">=3.10.0 <4.0.0"
+  sdk: ^3.13.0
   flutter: ">=3.47.0"
 
 dependencies:
