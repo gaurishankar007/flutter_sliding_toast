@@ -27,3 +27,7 @@ migrate_working_dir/
 **/doc/api/
 .dart_tool/
 build/
+
+# Local Claude Code setup (rules + hooks), not shared
+CLAUDE.md
+.claude/
