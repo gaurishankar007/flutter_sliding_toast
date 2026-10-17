@@ -25,7 +25,7 @@ class const InteractiveToast._() {
   static final _toastControllers = Queue<ToastController>();
   static BuildContext? _context;
   static OverlayState? _overlayState;
-  static ToastDisplayMode _displayMode = ToastDisplayMode.allAtOnce;
+  static ToastDisplayMode _displayMode = .allAtOnce;
 
   /// Toasts waiting for their turn in [ToastDisplayMode.oneByOne].
   static final _pendingToasts = Queue<_ToastEntry>();
@@ -72,7 +72,7 @@ class const InteractiveToast._() {
 
     /// Don't show the toast if both overlay and mounted context are not provided
     if (resolvedContext?.mounted != true && resolvedOverlayState == null) {
-      return ToastController.empty();
+      return .empty();
     }
 
     late final ToastController toastController;
@@ -115,7 +115,7 @@ class const InteractiveToast._() {
     /// Adding toast to the list
     _toastControllers.add(toastController);
 
-    if ((displayMode ?? _displayMode) == ToastDisplayMode.oneByOne) {
+    if ((displayMode ?? _displayMode) == .oneByOne) {
       _enqueue(toast);
     } else {
       toast.insert();

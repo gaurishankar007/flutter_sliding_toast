@@ -90,7 +90,7 @@ class _ToastSliderState extends State<ToastSlider>
   }
 
   Future<void> animationListener(AnimationStatus status) async {
-    if (status == AnimationStatus.completed) {
+    if (status == .completed) {
       // Wait for the reverse animation to complete
       if (toastSetting.showReverseAnimation) {
         await slideController.reverse();
@@ -141,7 +141,7 @@ class _ToastSliderState extends State<ToastSlider>
     // Show the progress bar if available
     if (toastSetting.showProgressBar) {
       child = Stack(
-        alignment: Alignment.bottomLeft,
+        alignment: .bottomLeft,
         children: [
           child,
           ToastProgressBarWidget(

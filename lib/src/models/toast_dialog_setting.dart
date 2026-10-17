@@ -14,7 +14,7 @@ class const ToastDialogSetting({
 
   /// The space between the dialog and the screen edges.
   /// Default is [EdgeInsets.all(16)]
-  final EdgeInsets padding = const EdgeInsets.all(16),
+  final EdgeInsets padding = const .all(16),
 
   /// The color of the barrier behind the dialog.
   /// Default is black with 80% opacity

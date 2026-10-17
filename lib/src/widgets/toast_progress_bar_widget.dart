@@ -22,8 +22,8 @@ class const ToastProgressBarWidget({
       height: height,
       child: SizeTransition(
         sizeFactor: animation,
-        axis: Axis.horizontal,
-        alignment: Alignment.centerLeft,
+        axis: .horizontal,
+        alignment: .centerLeft,
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(

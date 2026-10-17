@@ -48,7 +48,7 @@ class const ToastStyle({
 
   /// The border radius of the toast.
   /// Default is [BorderRadius.circular(8)]
-  final BorderRadius borderRadius = const BorderRadius.all(Radius.circular(8)),
+  final BorderRadius borderRadius = const .all(.circular(8)),
 
   /// The border of the toast.
   /// Default is null
@@ -65,7 +65,7 @@ class const ToastStyle({
 
   /// The cross axis alignment of the leading, title, and trailing
   /// which are aligned in a row.
-  final CrossAxisAlignment widgetCrossAxisAlignment = CrossAxisAlignment.center,
+  final CrossAxisAlignment widgetCrossAxisAlignment = .center,
 }) {
   ToastStyle copyWith({
     EdgeInsets? padding,

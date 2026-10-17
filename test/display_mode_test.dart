@@ -26,7 +26,7 @@ void main() {
 
   tearDown(() {
     InteractiveToast.closeAllToast();
-    InteractiveToast.setDisplayMode(ToastDisplayMode.allAtOnce);
+    InteractiveToast.setDisplayMode(.allAtOnce);
   });
 
   test('defaults to showing all toasts at once', () {
@@ -48,7 +48,7 @@ void main() {
     tester,
   ) async {
     await pumpApp(tester);
-    InteractiveToast.setDisplayMode(ToastDisplayMode.oneByOne);
+    InteractiveToast.setDisplayMode(.oneByOne);
 
     final first = slide('one');
     final second = slide('two');
@@ -72,7 +72,7 @@ void main() {
     tester,
   ) async {
     await pumpApp(tester);
-    InteractiveToast.setDisplayMode(ToastDisplayMode.oneByOne);
+    InteractiveToast.setDisplayMode(.oneByOne);
 
     slide('one');
     slide('two');
@@ -92,7 +92,7 @@ void main() {
     tester,
   ) async {
     await pumpApp(tester);
-    InteractiveToast.setDisplayMode(ToastDisplayMode.oneByOne);
+    InteractiveToast.setDisplayMode(.oneByOne);
 
     final first = slide('one');
     slide('two').closeToast();
@@ -111,8 +111,8 @@ void main() {
   ) async {
     await pumpApp(tester);
 
-    slide('one', displayMode: ToastDisplayMode.oneByOne);
-    slide('two', displayMode: ToastDisplayMode.oneByOne);
+    slide('one', displayMode: .oneByOne);
+    slide('two', displayMode: .oneByOne);
     slide('three');
     await tester.pump();
 
@@ -123,7 +123,7 @@ void main() {
 
   testWidgets('closeAllToast also drops the queued toasts', (tester) async {
     await pumpApp(tester);
-    InteractiveToast.setDisplayMode(ToastDisplayMode.oneByOne);
+    InteractiveToast.setDisplayMode(.oneByOne);
 
     slide('one');
     slide('two');

@@ -18,12 +18,10 @@ void main() {
 
     test('toast settings keep the dialog setting through copyWith', () {
       const dialogSetting = ToastDialogSetting(maxWidth: 200);
-      final slide = const SlidingToastSetting(
-        dialogSetting: dialogSetting,
-      ).copyWith(showDialogOnTap: true);
-      final pop = const PopupToastSetting(
-        dialogSetting: dialogSetting,
-      ).copyWith(showDialogOnTap: true);
+      final slide = const SlidingToastSetting(dialogSetting: dialogSetting)
+          .copyWith(showDialogOnTap: true);
+      final pop = const PopupToastSetting(dialogSetting: dialogSetting)
+          .copyWith(showDialogOnTap: true);
 
       expect(slide.showDialogOnTap, isTrue);
       expect(slide.dialogSetting, dialogSetting);

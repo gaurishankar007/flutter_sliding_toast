@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/widgets.dart';
 
 import 'package:flutter_sliding_toast/src/models/toast_style.dart';
@@ -36,12 +34,12 @@ class const ToastContainerWidget({
     }
 
     Widget child = Row(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: .min,
       crossAxisAlignment: toastStyle.widgetCrossAxisAlignment,
       children: [
         if (leading != null)
           Padding(
-            padding: EdgeInsets.only(right: toastStyle.titleLeadingGap),
+            padding: .only(right: toastStyle.titleLeadingGap),
             child: leading,
           ),
         if (expandTitleWidth)
@@ -50,14 +48,14 @@ class const ToastContainerWidget({
           Flexible(child: title),
         if (trailing != null)
           Padding(
-            padding: EdgeInsets.only(left: toastStyle.titleTrailingGap),
+            padding: .only(left: toastStyle.titleTrailingGap),
             child: trailing,
           ),
       ],
     );
 
     child = Container(
-      padding: toastStyle.padding ?? const EdgeInsets.all(15),
+      padding: toastStyle.padding ?? const .all(15),
       decoration: BoxDecoration(
         color: backgroundColor,
         gradient: toastStyle.gradient,
@@ -70,7 +68,7 @@ class const ToastContainerWidget({
 
     if (toastStyle.glassBlur != null) {
       child = BackdropFilter(
-        filter: ImageFilter.blur(
+        filter: .blur(
           sigmaX: toastStyle.glassBlur!,
           sigmaY: toastStyle.glassBlur!,
         ),

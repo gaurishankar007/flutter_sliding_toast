@@ -10,7 +10,7 @@ void main() {
   }) {
     return MaterialApp(
       home: ToastSlider(
-        toastController: ToastController.empty(),
+        toastController: .empty(),
         leading: null,
         title: const Text('hi'),
         trailing: null,

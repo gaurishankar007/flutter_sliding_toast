@@ -53,12 +53,12 @@ class const PopupToastSetting({
   /// So that it will slide from top to the top center/left/right.
   /// Otherwise, the slide will not look good.
   /// Default is [Alignment.bottomCenter]
-  final Alignment toastAlignment = Alignment.bottomCenter,
+  final Alignment toastAlignment = .bottomCenter,
 
   /// The padding around the toast.
   /// Provide this according to the toast start position and alignment.
   /// Default is [EdgeInsets.all(10)]
-  final EdgeInsets padding = const EdgeInsets.all(10),
+  final EdgeInsets padding = const .all(10),
 
   /// Whether to show the whole toast content in a dialog styled like
   /// the toast when it's tapped, useful for long messages.

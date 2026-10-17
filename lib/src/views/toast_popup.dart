@@ -105,7 +105,7 @@ class _ToastPopupState extends State<ToastPopup> with TickerProviderStateMixin {
   }
 
   Future<void> animationListener(AnimationStatus status) async {
-    if (status == AnimationStatus.completed) {
+    if (status == .completed) {
       // Wait for the reverse animation to complete
       if (showAnimation && toastSetting.showReverseAnimation) {
         await fadeController.reverse();

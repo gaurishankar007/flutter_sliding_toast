@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
       title: 'Flutter Sliding Toast Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: color),
+        colorScheme: .fromSeed(seedColor: color),
         appBarTheme: AppBarTheme(
           backgroundColor: color,
           foregroundColor: Colors.white,
@@ -44,7 +44,7 @@ class const MyHomePage({super.key, required final VoidCallback changeColor})
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool showOneByOne = InteractiveToast.displayMode == ToastDisplayMode.oneByOne;
+  bool showOneByOne = InteractiveToast.displayMode == .oneByOne;
 
   @override
   void initState() {
@@ -68,9 +68,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+          padding: const .symmetric(horizontal: 15, vertical: 20),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: .center,
             children: [
               const SizedBox(width: double.maxFinite),
               SwitchListTile(
@@ -83,9 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onChanged: (value) {
                   setState(() => showOneByOne = value);
                   InteractiveToast.setDisplayMode(
-                    value
-                        ? ToastDisplayMode.oneByOne
-                        : ToastDisplayMode.allAtOnce,
+                    value ? .oneByOne : .allAtOnce,
                   );
                 },
               ),
@@ -130,8 +128,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     trailing: _trailingWidget(),
                     toastSetting: const SlidingToastSetting(
                       displayDuration: Duration(seconds: 2),
-                      toastStartPosition: ToastPosition.top,
-                      toastAlignment: Alignment.topCenter,
+                      toastStartPosition: .top,
+                      toastAlignment: .topCenter,
                       progressBarHeight: 4,
                     ),
                     toastStyle: const ToastStyle(
@@ -153,8 +151,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       'Dismiss me by sliding horizontally.',
                     ),
                     toastSetting: const SlidingToastSetting(
-                      toastStartPosition: ToastPosition.left,
-                      toastAlignment: Alignment.bottomLeft,
+                      toastStartPosition: .left,
+                      toastAlignment: .bottomLeft,
                       displayDuration: Duration(seconds: 2),
                     ),
                     trailing: const Icon(
@@ -182,8 +180,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   InteractiveToast.slide(
                     title: const Text("Hi there! I'm a success toast 🦁"),
                     toastSetting: const SlidingToastSetting(
-                      toastStartPosition: ToastPosition.right,
-                      toastAlignment: Alignment.topRight,
+                      toastStartPosition: .right,
+                      toastAlignment: .topRight,
                     ),
                     trailing: const Icon(
                       Icons.check_circle_rounded,
@@ -211,7 +209,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     title: const Text(
                       "I'm a bit more modified toast 🐷 with only title widget, "
                       'without progressBar and reverse animation.',
-                      textAlign: TextAlign.center,
+                      textAlign: .center,
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                     toastSetting: const SlidingToastSetting(
@@ -220,13 +218,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       displayDuration: Duration(seconds: 3),
                       showReverseAnimation: false,
                       showProgressBar: false,
-                      toastStartPosition: ToastPosition.left,
-                      toastAlignment: Alignment.center,
+                      toastStartPosition: .left,
+                      toastAlignment: .center,
                     ),
                     toastStyle: ToastStyle(
                       image: const DecorationImage(
                         image: AssetImage('assets/image.jpg'),
-                        fit: BoxFit.cover,
+                        fit: .cover,
                       ),
                       boxShadow: [
                         BoxShadow(
@@ -272,7 +270,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       showScaling: false,
                       animationDuration: Duration(seconds: 1),
                       displayDuration: Duration(seconds: 3),
-                      toastAlignment: Alignment.topRight,
+                      toastAlignment: .topRight,
                     ),
                   );
                 },
@@ -291,7 +289,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       showScaling: false,
                       animationDuration: Duration(seconds: 2),
                       displayDuration: Duration(seconds: 3),
-                      toastAlignment: Alignment.center,
+                      toastAlignment: .center,
                     ),
                     toastStyle: const ToastStyle(
                       expandedTitle: false,
@@ -328,8 +326,8 @@ class _MyHomePageState extends State<MyHomePage> {
         leading: const Icon(Icons.notifications, color: Colors.white),
         toastSetting: const SlidingToastSetting(
           displayDuration: Duration(milliseconds: 1500),
-          toastStartPosition: ToastPosition.top,
-          toastAlignment: Alignment.topCenter,
+          toastStartPosition: .top,
+          toastAlignment: .topCenter,
         ),
         toastStyle: ToastStyle(
           backgroundColor: colors[i],
@@ -358,7 +356,7 @@ class _MyHomePageState extends State<MyHomePage> {
       title: const Text(
         message,
         maxLines: 2,
-        overflow: TextOverflow.ellipsis,
+        overflow: .ellipsis,
         style: textStyle,
       ),
       dialogTitle: const Text(message, style: textStyle),
@@ -371,7 +369,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Color(0xFF263238),
         progressBarColor: Colors.amber,
         titleLeadingGap: 10,
-        widgetCrossAxisAlignment: CrossAxisAlignment.start,
+        widgetCrossAxisAlignment: .start,
       ),
     );
   }
@@ -381,7 +379,7 @@ class _MyHomePageState extends State<MyHomePage> {
       width: 40,
       height: 40,
       decoration: BoxDecoration(
-        shape: BoxShape.circle,
+        shape: .circle,
         color: Colors.purple,
         boxShadow: [
           BoxShadow(
@@ -391,7 +389,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      alignment: Alignment.center,
+      alignment: .center,
       child: const Text('🦄', style: TextStyle(fontSize: 20)),
     );
   }

@@ -11,7 +11,7 @@ void main() {
     test('copyWith overrides only the given fields', () {
       const setting = SlidingToastSetting();
       final updated = setting.copyWith(
-        toastStartPosition: ToastPosition.top,
+        toastStartPosition: .top,
         showProgressBar: false,
       );
 
